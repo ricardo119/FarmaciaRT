@@ -22,7 +22,7 @@ public class Cliente {
     }
     //*******************CRIAR FICHEIRO PARA CLIENTES*************************//
      public void salvarCliente() {
-        String nomeArquivo = "clientes"; // Nome do arquivo de dados
+        String nomeArquivo = "Clientes"; // Nome do arquivo de dados
 
         try {
             File arquivo = new File(nomeArquivo);

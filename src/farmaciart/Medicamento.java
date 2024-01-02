@@ -1,82 +1,101 @@
 package farmaciart;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import static p1.P1App.println;
-import static p1.P1App.readDouble;
-import static p1.P1App.readInt;
-import static p1.P1App.readLine;
 
 
-public class Medicamento extends Produto{
+public class Medicamento extends Produto implements Serializable{
 
-
-    
     String categoria;
     
-    public Medicamento(String nome , String descricao, int stock , double preco , double iva){
+    public Medicamento(){
         
-        super(nome, descricao, stock, preco, iva);
+    }
+    
+    public Medicamento(String nome , String descricao, String categoria, int stock , double preco , double iva, int dia, int mes, int ano){
+        
+        super(nome, descricao, stock, preco, iva, dia, mes, ano);
         this.categoria = categoria;
     }
     
+    public String getNome() {
+        return nome;
+    }
     
-    public void salvarMedicamento() {
-        String nomeArquivo = "Medicamentos"; // Nome do arquivo de dados
+    public String getDescricao() {
+        return descricao;
+    }
+    
+    public String getCategoria() {
+        return categoria;
+    }
+    
+    public double getPreco() {
+        return preco;
+    }
+    
+    public int getStock() {
+        return stock;
+    }
+    
+    public double getIva() {
+        return iva;
+    }
+    
+    public String getValidade() {
+        return super.toString(); // Assuming Data class has a toString method
+    }
+    
+ 
+    public static void carregarMedicamentos(ArrayList<Medicamento> listaMedicamentos) {
+        String nomeArquivo = "Medicamentos.dat";
 
-        try {
-            File arquivo = new File(nomeArquivo);
-
-            // Se o arquivo não existir, cria um novo
-            if (!arquivo.exists()) {
-                arquivo.createNewFile();
-            }
-
-            // Abre o arquivo para escrita
-            FileWriter fw = new FileWriter(arquivo, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            
-            String produtoInfo = "Nome:" + nome + " Descrição:" +  descricao + " Categoria:" + categoria + " Stock:" + stock + " Preço:" + preco + " IVA:" + iva;
-            bw.write(produtoInfo);
-            bw.newLine(); // Pula para a próxima linha para o próximo produto
-            bw.close(); // Fecha o arquivo
-
-            System.out.println("Produto adicionado com sucesso ao arquivo!");
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(nomeArquivo))) {
+            outputStream.writeObject(listaMedicamentos);
+            println("Lista de medicamentos salva com sucesso!");
         } catch (IOException e) {
-            System.err.println("Erro ao salvar o produto: " + e.getMessage());
+            println("Erro ao salvar a lista de medicamentos: " + e.getMessage());
         }
     }
     
-    public static void novoMedicamento(){
-        
-        String nome, descricao, categoria;
-        int stock;
-        double preco, iva;
-        
-        println("Insira o nome:");
-        nome = readLine();
-        
-        println("Insira a descricao:");
-        descricao = readLine();
-        
-        println("Insira a categoria:");
-        categoria = readLine();
-        
-        println("Insira o stock:");
-        stock = readInt();
-        
-        println("Insira o preco:");
-        preco = readDouble();
-        
-        println("Insira o IVA:");
-        iva = readDouble();
-        
-        Medicamento novoMedicamento = new Medicamento(nome, descricao, stock, preco, iva);
-        
-        novoMedicamento.salvarMedicamento();
-        
-        println("Novo medicamento adicionado com sucesso");
+    @SuppressWarnings("unchecked")
+    public static ArrayList<Medicamento> carregarListaMedicamentos() {
+        String nomeArquivo = "Medicamentos.dat";
+        ArrayList<Medicamento> listaMedicamentos = new ArrayList<>();
+
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(nomeArquivo))) {
+            listaMedicamentos = (ArrayList<Medicamento>) inputStream.readObject();
+            println("Lista de medicamentos carregada com sucesso!");
+        } catch (IOException | ClassNotFoundException e) {
+            println("Erro ao carregar a lista de medicamentos: " + e.getMessage());
+        }
+
+        return listaMedicamentos;
     }
+    
+    public void guardarMedicamentos(ArrayList<Medicamento> listaMedicamentos) {
+        listaMedicamentos.add(this);
+        carregarMedicamentos(listaMedicamentos);
+    }
+    
+    public static void listarMedicamentos() {
+        ArrayList<Medicamento> listaMedicamentos = carregarListaMedicamentos();
+
+        if (listaMedicamentos.isEmpty()) {
+            println("A lista de medicamentos está vazia.");
+        } else {
+            println("Lista de Medicamentos:");
+            for (Medicamento medicamento : listaMedicamentos) {
+                println("Nome: " + medicamento.getNome() +
+                                   ", Descrição: " + medicamento.getDescricao() +
+                                   ", Categoria: " + medicamento.getCategoria() +
+                                   ", Stock: " + medicamento.getStock() +
+                                   ", Preço: " + medicamento.getPreco() +
+                                   ", IVA: " + medicamento.getIva() +
+                                   ", Validade: " + medicamento.getValidade());
+            }
+        }
+    }  
 }

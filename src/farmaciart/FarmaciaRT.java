@@ -75,10 +75,11 @@ public class FarmaciaRT extends P1App {
     int admin;
     do {
         println("Menu Administrador:");
-        println("1.Adicionar Produto");
-        println("2.Adicionar Medicamento");
-        println("3.Adicionar Cliente");
-        println("0.Voltar ao menu principal");
+        println("1. Adicionar Produto");
+        println("2. Adicionar Cliente");
+        println("3. Listar Medicamentos");
+        println("4. Listar Indiferenciados");
+        println("0. Voltar ao menu principal");
 
         admin = readInt();
 
@@ -90,9 +91,11 @@ public class FarmaciaRT extends P1App {
                 //Medicamento.adicionarMedicamento();
                 break;
             case 3:
-                Cliente.adicionarCliente();       
+                Medicamento.listarMedicamentos();
                 break;
-            
+            case 4:
+                Indiferenciado.listarIndiferenciados();
+                break;
             case 0:
                 println("Voltar ao menu principal...");
                 break;
