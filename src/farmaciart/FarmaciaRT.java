@@ -39,6 +39,36 @@ public class FarmaciaRT extends P1App {
         
     }
     
+    //********************* MENU ATENDIMENTO   ********************************//
+    
+    private static void menuAtendimento(){
+        Scanner scanner = new Scanner(System.in);
+        int opcao;
+        
+        do {
+        System.out.println("Menu de Atendimento:");
+        System.out.println("1. Inserir nome ou NIF do cliente:");
+        System.out.println("0. Voltar ao menu principal");
+
+        opcao = scanner.nextInt();
+
+        switch (opcao) {
+            case 1:
+                //atendimento.cliente();
+                break;
+            case 0:
+                System.out.println("Voltar ao menu principal...");
+                break;
+            default:
+                System.out.println("Opção inválida. Por favor, selecione novamente.");
+                break;
+        }
+    } while (opcao != 0);
+    scanner.close();
+}
+        
+    
+    
     //*********************MENU ADMINISTRADOR ********************************//
     
     private static void menuAdministrador() {

@@ -47,6 +47,7 @@ public class Cliente {
                     + " " + e.getMessage());
         }
     }
+   
     //*******************ADICIONAR CLIENTES***********************************//  
     
      static void adicionarCliente() {
@@ -65,6 +66,7 @@ public class Cliente {
     scanner.nextLine(); // Limpar o buffer
     scanner.close();
 }
+    
 }
     
     
