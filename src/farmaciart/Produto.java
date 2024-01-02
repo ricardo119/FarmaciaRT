@@ -6,7 +6,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
+import static p1.P1App.println;
+import static p1.P1App.readDouble;
+import static p1.P1App.readInt;
+import static p1.P1App.readLine;
 
 public class Produto {
     
@@ -56,29 +59,30 @@ public class Produto {
     
  //******************ADICIONAR PRODUTO*************************************//
     
-    static void adicionarProduto() {
-    Scanner scanner = new Scanner(System.in);
+    public static void novoProduto() {
+        
+    String nome, descricao;
+    int stock;
+    double preco, iva;   
 
-    System.out.println("Digite o nome do produto:");
-    String nome = scanner.nextLine();
+    println("Digite o nome do produto:");
+    nome = readLine();
 
-    System.out.println("Digite a descrição do produto:");
-    String descricao = scanner.nextLine();
+    println("Digite a descrição do produto:");
+    descricao = readLine();
 
-    System.out.println("Digite o estoque do produto:");
-    int stock = scanner.nextInt();
+    println("Digite o estoque do produto:");
+    stock = readInt();
 
-    System.out.println("Digite o preço do produto:");
-    double preco = scanner.nextDouble();
+    println("Digite o preço do produto:");
+    preco = readDouble();
 
-    System.out.println("Digite o valor do IVA do produto:");
-    double iva = scanner.nextDouble();
+    println("Digite o valor do IVA do produto:");
+    iva = readDouble();
 
     Produto novoProduto = new Produto(nome, descricao, stock, preco, iva);
     novoProduto.salvarProduto();
 
-    scanner.nextLine(); // Limpar o buffer
-    scanner.close();
 }
 }
     

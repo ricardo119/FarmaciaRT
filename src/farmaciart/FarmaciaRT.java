@@ -8,21 +8,19 @@ public class FarmaciaRT extends P1App {
     
     public static void main(String[] args) {
         
- 
-       Scanner scanner = new Scanner(System.in);
 
        
         int escolha;
         do {
-            System.out.println(" Farmácia R&T!");
-            System.out.println("Selecione uma opção:");
-            System.out.println("1. Atendimento");
-            System.out.println("9. Menu Administrador");
-            System.out.println("0. Sair");
+            println(" Farmácia R&T!");
+            println("Selecione uma opção:");
+            println("1. Atendimento");
+            println("9. Menu Administrador");
+            println("0. Sair");
 
-            escolha = scanner.nextInt();
+            escolha = readInt();
 
-            switch (escolha) {
+            switch(escolha) {
                 case 1:
                     //menuAtendimento();
                     break;
@@ -31,34 +29,32 @@ public class FarmaciaRT extends P1App {
                     break;
                 
                 case 0:
-                    System.out.println("Você saiu do sistema. Até breve!");
+                    println("Você saiu do sistema. Até breve!");
                     break;
                 default:
-                    System.out.println("Opção inválida. Por favor, selecione novamente.");
+                    println("Opção inválida. Por favor, selecione novamente.");
                     break;
             }
         } while (escolha != 0);
         
-        scanner.close();
     }
     
     //*********************MENU ADMINISTRADOR ********************************//
     
     private static void menuAdministrador() {
-    Scanner scanner = new Scanner(System.in);
-    int escolha;
+    int admin;
     do {
-        System.out.println("Menu Administrador:");
-        System.out.println("1.Adicionar Produto");
-        System.out.println("2.Adicionar Medicamento");
-        System.out.println("3.Adicionar Cliente");
-        System.out.println("0.Voltar ao menu principal");
+        println("Menu Administrador:");
+        println("1.Adicionar Produto");
+        println("2.Adicionar Medicamento");
+        println("3.Adicionar Cliente");
+        println("0.Voltar ao menu principal");
 
-        escolha = scanner.nextInt();
+        admin = readInt();
 
-        switch (escolha) {
+        switch(admin) {
             case 1:
-                Produto.adicionarProduto();
+                Produto.novoProduto();
                 break;
             case 2:
                 //Medicamento.adicionarMedicamento();
@@ -68,14 +64,13 @@ public class FarmaciaRT extends P1App {
                 break;
             
             case 0:
-                System.out.println("Voltar ao menu principal...");
+                println("Voltar ao menu principal...");
                 break;
             default:
-                System.out.println("Opção inválida. Por favor, selecione novamente.");
+                println("Opção inválida. Por favor, selecione novamente.");
                 break;
         }
-    } while (escolha != 0);
-    scanner.close();
+    } while (admin != 0);
 }
    
 }
