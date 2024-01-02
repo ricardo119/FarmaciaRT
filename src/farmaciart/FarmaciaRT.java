@@ -7,8 +7,8 @@ public class FarmaciaRT {
 
     
     public static void main(String[] args) {
- jdjdjdd
-         dmjdjjd
+ 
+         System.out.println("print");
     }
     
 }
