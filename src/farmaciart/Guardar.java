@@ -31,7 +31,7 @@ public class Guardar extends Produto {
             BufferedWriter bw = new BufferedWriter(fw);
 
             // Escreve os detalhes do novo produto no arquivo
-            String indiferenciadoInfo = "Nome:" + indiferenciado.getNome() + ", Descricao:" + indiferenciado.getNome()  + " Preço:" + indiferenciado.getNome() + " IVA:" + indiferenciado.getIva() + " Validade:" + indiferenciado.getValidade(); 
+            String indiferenciadoInfo = "Nome:" + indiferenciado.getNome() + ", Descricao:" + indiferenciado.getDescricao()  + " Preço:" + indiferenciado.getPreco() + " IVA:" + indiferenciado.getIva() + " Validade:" + indiferenciado.getValidade(); 
             bw.write(indiferenciadoInfo);
             bw.newLine(); // Pula para a próxima linha para o próximo produto
             bw.close(); // Fecha o arquivo
@@ -58,7 +58,7 @@ public class Guardar extends Produto {
             FileWriter fw = new FileWriter(arquivo, true);
             BufferedWriter bw = new BufferedWriter(fw);
 
-            String medicamentoInfo = "Nome:" + medicamento.getNome() + ", Descricao:" + medicamento.getNome()  + " Preço:" + medicamento.getNome() + " IVA:" + medicamento.getIva() + " Validade:" + medicamento.getValidade(); 
+            String medicamentoInfo = "Nome:" + medicamento.getNome() + ", Descricao:" + medicamento.getDescricao()+ " Preço:" + medicamento.getPreco() + " IVA:" + medicamento.getIva() + " Validade:" + medicamento.getValidade(); 
             bw.write(medicamentoInfo);
             bw.newLine(); // Pula para a próxima linha para o próximo produto
             bw.close(); // Fecha o arquivo

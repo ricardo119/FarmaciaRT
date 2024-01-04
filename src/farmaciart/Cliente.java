@@ -1,77 +1,51 @@
-
 package farmaciart;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
+import java.io.Serializable;
+import static p1.P1App.println;
+import static p1.P1App.readLine;
 
-public class Cliente{
+public class Cliente extends Morada implements Serializable {
+
+    public String nome;
+    public String nif;
+
     
-   public String nome;
-   public String nif;
-   
-   public Cliente(){
-       
-   }
-  
-  
-    public Cliente (String nome , String nif){
+
+
+    // Método para adicionar um novo cliente a partir da entrada do usuário
+    public static void adicionarCliente() {
         
-        this.nome = nome;
-        this.nif = nif;
-        
-        
+
+        println("Nome do cliente:");
+        String nome = readLine();
+
+        println("Digite o NIF:");
+        String nif = readLine();
+
     }
-    //*******************CRIAR FICHEIRO PARA CLIENTES*************************//
-     public void salvarCliente() {
-        String nomeArquivo = "Clientes"; // Nome do arquivo de dados
+
+        public static void listarClientes() {
+        String nomeArquivo = "clientes.dat";
 
         try {
-            File arquivo = new File(nomeArquivo);
+            BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
+            String linha;
 
-            // Se o arquivo não existir, cria um novo
-            if (!arquivo.exists()) {
-                arquivo.createNewFile();
+            println("\nClientes adicionados:");
+
+            while ((linha = leitor.readLine()) != null) {
+                println(linha);
             }
 
-            // Abre o arquivo para escrita
-            FileWriter fw = new FileWriter(arquivo, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-
-            // Escreve os detalhes do novo produto no arquivo
-            bw.write("Nome: " + nome + ", NIF: " + nif);
-            bw.newLine(); // Pula para a próxima linha para o próximo produto
-            bw.close(); // Fecha o arquivo
-
-            System.out.println("O cliente "+nome+" foi adicionado com sucesso");
+            leitor.close();
         } catch (IOException e) {
-            System.err.println("Erro ao adicionar cliente9"
-                    + " " + e.getMessage());
+            println("Erro ao listar clientes: " + e.getMessage());
         }
     }
-   
-    //*******************ADICIONAR CLIENTES***********************************//  
-    
-     static void adicionarCliente() {
-    Scanner scanner = new Scanner(System.in);
 
-    System.out.println("Nome do cliente:");
-    String nome = scanner.nextLine();
-
-    System.out.println("Digite o NIF:");
-    String nif = scanner.nextLine();
-
-
-    Cliente novoCliente = new Cliente(nome, nif);
-    novoCliente.salvarCliente();
-
-    scanner.nextLine(); // Limpar o buffer
-    scanner.close();
-}
     
 }
-    
-    
-

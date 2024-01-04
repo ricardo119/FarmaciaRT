@@ -25,7 +25,7 @@ public class Listar extends Produto {
     
     
     public void listarMedicamentos(List<Medicamento> medicamentos) {
-        println("Lista de Indiferenciados:");
+        println("Lista de Medicamentos:");
         for (Medicamento medicamento : medicamentos) {
              println("Nome: " + medicamento.getNome() +
                                ", Descrição: " + medicamento.getDescricao() +

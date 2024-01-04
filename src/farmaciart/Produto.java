@@ -5,6 +5,7 @@ import static p1.P1App.readDouble;
 import static p1.P1App.readInt;
 import static p1.P1App.readLine;
 import java.io.Serializable;
+import java.util.List;
 
 public class Produto extends Data implements Serializable {
     
@@ -31,7 +32,7 @@ public class Produto extends Data implements Serializable {
     
  //******************ADICIONAR PRODUTO*************************************//
     
-    public static void novoProduto() {
+    public static void novoProduto(List<Medicamento> medicamentosList, List<Indiferenciado> indiferenciadosList) {
         
     String nome, descricao, categoria;
     int stock, op;
@@ -57,7 +58,7 @@ public class Produto extends Data implements Serializable {
     
     String[] dateComponents = expirationDateInput.split("/");
     
-    int dia = 10;
+    int dia = Integer.parseInt(dateComponents[0]);
     int mes = Integer.parseInt(dateComponents[1]);
     int ano = Integer.parseInt(dateComponents[2]);
     
@@ -73,16 +74,18 @@ public class Produto extends Data implements Serializable {
             categoria  = "medicamento";
             Medicamento novoMedicamento = new Medicamento(nome, descricao, categoria, stock, preco, iva, dia, mes, ano);
             novoMedicamento.guardarMedicamentos();
+            medicamentosList.add(novoMedicamento);
             break;
         case 2:
             categoria = "indeferenciado";
             Indiferenciado novoIndiferenciado = new Indiferenciado(nome, descricao, categoria, stock, preco, iva, dia ,mes, ano);
             novoIndiferenciado.guardarIndiferenciados();
+            indiferenciadosList.add(novoIndiferenciado);
             break;
         default:
             println("Categoria inexistente");
             break;
-    }
+        }
 
-}
+    }
 }
