@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Cliente {
+public class Cliente extends {
     
    private String nome;
    private String nif;
