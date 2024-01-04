@@ -91,10 +91,10 @@ public class FarmaciaRT extends P1App {
                 //Medicamento.adicionarMedicamento();
                 break;
             case 3:
-                Medicamento.listarMedicamentos();
+                //Medicamento.listarMedicamentos();
                 break;
             case 4:
-                Indiferenciado.listarIndiferenciados();
+                //Indiferenciado.listarIndiferenciados();
                 break;
             case 0:
                 println("Voltar ao menu principal...");

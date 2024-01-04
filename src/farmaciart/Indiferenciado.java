@@ -1,13 +1,9 @@
 package farmaciart;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import static p1.P1App.println;
+import java.util.List;
+
 
 public class Indiferenciado extends Produto implements Serializable {
     
@@ -52,53 +48,14 @@ public class Indiferenciado extends Produto implements Serializable {
         return super.toString();
     }
     
-     public static void carregarIndiferenciados(ArrayList<Indiferenciado> listaIndiferenciados) {
-        String nomeArquivo = "Indiferenciados.dat";
-
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(nomeArquivo))) {
-            outputStream.writeObject(listaIndiferenciados);
-            println("Lista de indiferenciados salva com sucesso!");
-        } catch (IOException e) {
-            println("Erro ao salvar a lista de indiferenciados: " + e.getMessage());
-        }
-    }
-     
-    @SuppressWarnings("unchecked")
-    public static ArrayList<Indiferenciado> carregarListaIndiferenciados() {
-        String nomeArquivo = "Indiferenciados.dat";
-        ArrayList<Indiferenciado> listaIndiferenciados = new ArrayList<>();
-
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(nomeArquivo))) {
-            listaIndiferenciados = (ArrayList<Indiferenciado>) inputStream.readObject();
-            println("Lista de indiferenciado carregada com sucesso!");
-        } catch (IOException | ClassNotFoundException e) {
-            println("Erro ao carregar a lista de medicamentos: " + e.getMessage());
-        }
-
-        return listaIndiferenciados;
+    public void guardarIndiferenciados() {
+        Guardar guardar = new Guardar();
+        guardar.salvarIndiferenciado(this);
     }
     
-    public void guardarIndiferenciados(ArrayList<Indiferenciado> listaIndiferenciados) {
-        listaIndiferenciados.add(this);
-        carregarIndiferenciados(listaIndiferenciados);
+    public void listarIndiferenciados(){
+    Listar listar = new Listar();
+    List<Indiferenciado> indiferenciadosList = new ArrayList<>();
+    listar.listarIndiferenciados(indiferenciadosList);
     }
-    
-    public static void listarIndiferenciados() {
-        ArrayList<Indiferenciado> listaIndiferenciados = carregarListaIndiferenciados();
-
-        if (listaIndiferenciados.isEmpty()) {
-            println("A lista de indiferenciados está vazia.");
-        } else {
-            println("Lista de Indiferenciado:");
-            for (Indiferenciado indiferenciado : listaIndiferenciados) {
-                println("Nome: " + indiferenciado.getNome() +
-                                   ", Descrição: " + indiferenciado.getDescricao() +
-                                   ", Categoria: " + indiferenciado.getCategoria() +
-                                   ", Stock: " + indiferenciado.getStock() +
-                                   ", Preço: " + indiferenciado.getPreco() +
-                                   ", IVA: " + indiferenciado.getIva());
-            }
-        }
-    }  
 }
-

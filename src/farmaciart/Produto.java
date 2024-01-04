@@ -1,6 +1,5 @@
 package farmaciart;
 
-import java.util.ArrayList;
 import static p1.P1App.println;
 import static p1.P1App.readDouble;
 import static p1.P1App.readInt;
@@ -72,15 +71,13 @@ public class Produto extends Data implements Serializable {
     switch(op){
         case 1:
             categoria  = "medicamento";
-            ArrayList<Medicamento> listaMedicamentos = Medicamento.carregarListaMedicamentos();
             Medicamento novoMedicamento = new Medicamento(nome, descricao, categoria, stock, preco, iva, dia, mes, ano);
-            novoMedicamento.guardarMedicamentos(listaMedicamentos);
+            novoMedicamento.guardarMedicamentos();
             break;
         case 2:
             categoria = "indeferenciado";
-            ArrayList<Indiferenciado> listaIndiferenciados = Indiferenciado.carregarListaIndiferenciados();
             Indiferenciado novoIndiferenciado = new Indiferenciado(nome, descricao, categoria, stock, preco, iva, dia ,mes, ano);
-            novoIndiferenciado.guardarIndiferenciados(listaIndiferenciados);
+            novoIndiferenciado.guardarIndiferenciados();
             break;
         default:
             println("Categoria inexistente");

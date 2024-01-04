@@ -7,13 +7,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Cliente extends {
+public class Cliente{
     
-   private String nome;
-   private String nif;
+   public String nome;
+   public String nif;
+   
+   public Cliente(){
+       
+   }
   
   
-    public Cliente (String nome , String nif ){
+    public Cliente (String nome , String nif){
         
         this.nome = nome;
         this.nif = nif;
@@ -41,7 +45,7 @@ public class Cliente extends {
             bw.newLine(); // Pula para a próxima linha para o próximo produto
             bw.close(); // Fecha o arquivo
 
-            System.out.println("O cliente"+nome+" foi adicionado com sucesso");
+            System.out.println("O cliente "+nome+" foi adicionado com sucesso");
         } catch (IOException e) {
             System.err.println("Erro ao adicionar cliente9"
                     + " " + e.getMessage());
