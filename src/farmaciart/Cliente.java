@@ -15,8 +15,23 @@ public class Cliente extends Morada implements Serializable {
 
     
 
+//***********************CRIAR FICHEIRO CLIENTES******************************//
+    public static void adicionarCliente(String nome, String nif) {
+        String nomeArquivo = "clientes.dat";
 
-    // Método para adicionar um novo cliente a partir da entrada do usuário
+        try {
+            FileOutputStream arquivo = new FileOutputStream(nomeArquivo, true);
+            String clienteInfo ="Cliente:" + nome + "; NIF:" + nif + "\n";
+            arquivo.write(clienteInfo.getBytes());
+            arquivo.close();
+
+            println("Novo cliente adicionado com sucesso ao arquivo " + nomeArquivo);
+        } catch (IOException e) {
+            println("Erro ao adicionar cliente: " + e.getMessage());
+        }
+    }
+
+//*************************INTRODUZIR NOVO CLIENTE****************************//
     public static void adicionarCliente() {
         
 
@@ -26,8 +41,11 @@ public class Cliente extends Morada implements Serializable {
         println("Digite o NIF:");
         String nif = readLine();
 
-    }
+        // Chama o método estático adicionarCliente definido na própria classe
+        Cliente.adicionarCliente(nome, nif);
 
+    }
+//****************LISTAR CLIENTE**********************************************//
         public static void listarClientes() {
         String nomeArquivo = "clientes.dat";
 
@@ -35,7 +53,7 @@ public class Cliente extends Morada implements Serializable {
             BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
             String linha;
 
-            println("\nClientes adicionados:");
+            println("\nGestao de Clientes:");
 
             while ((linha = leitor.readLine()) != null) {
                 println(linha);

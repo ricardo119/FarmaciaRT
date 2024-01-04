@@ -1,7 +1,5 @@
-
 package farmaciart;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
 import p1.P1App;
@@ -23,7 +21,7 @@ public class FarmaciaRT extends P1App {
 
             switch(escolha) {
                 case 1:
-                    //menuAtendimento();
+                    menuAtendimento();
                     break;
                 case 9:
                     menuAdministrador();
@@ -40,7 +38,6 @@ public class FarmaciaRT extends P1App {
         
     }
     
-    //********************* MENU ATENDIMENTO   ********************************//
     //********************* MENU ATENDIMENTO   ********************************//
     
     private static void menuAtendimento(){
