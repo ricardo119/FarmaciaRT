@@ -14,20 +14,78 @@ public class Produto extends Data implements Serializable {
     int stock;
     double preco;
     double iva;
+    Data validade;
             
     public Produto(){
         super();
     }
     
-    public Produto(String nome , String descricao, int stock , double preco , double iva, int dia, int mes, int ano){
+    public Produto(String nome , String descricao, int stock , double preco , double iva, Data validade){
         
-        super(dia, mes, ano);
         this.nome = nome;
         this.descricao = descricao;
         this.stock = stock;
         this.preco = preco;
         this.iva = iva;
+        this.validade = validade;
         
+    }
+    
+    public String getNome() {
+        return nome;
+    }
+    
+    public String getDescricao() {
+        return descricao;
+    }
+    
+    public double getPreco() {
+        return preco;
+    }
+    
+    public int getStock() {
+        return stock;
+    }
+    
+    public double getIva() {
+        return iva;
+    }
+    
+    public Data getValidade() {
+        return validade;
+    }
+    
+    
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+    
+    public void setDescricao(String descricao){
+        this.descricao = descricao;
+    }
+    
+    
+    public double setPreco(double preco){
+        this.preco = preco;
+        return preco;
+    }
+    
+    public int setIva(int iva){
+        this.iva = iva;
+        return iva;
+    }
+    
+    public void setValidade(){
+        println("Digita a validade do produto (dd/mm/aaaa)");
+        String expirationDateInput = readLine();
+    
+        String[] dateComponents = expirationDateInput.split("/");
+    
+        int dia = Integer.parseInt(dateComponents[0]);
+        int mes = Integer.parseInt(dateComponents[1]);
+        int ano = Integer.parseInt(dateComponents[2]);
+    
+        Data validade = new Data(dia,mes,ano);
     }
     
  //******************ADICIONAR PRODUTO*************************************//
@@ -62,6 +120,7 @@ public class Produto extends Data implements Serializable {
     int mes = Integer.parseInt(dateComponents[1]);
     int ano = Integer.parseInt(dateComponents[2]);
     
+    Data validade = new Data(dia,mes,ano);
     
     println("Categoria:");
     println("1. Medicamento");
@@ -72,13 +131,13 @@ public class Produto extends Data implements Serializable {
     switch(op){
         case 1:
             categoria  = "medicamento";
-            Medicamento novoMedicamento = new Medicamento(nome, descricao, categoria, stock, preco, iva, dia, mes, ano);
+            Medicamento novoMedicamento = new Medicamento(nome, descricao, categoria, stock, preco, iva, validade);
             novoMedicamento.guardarMedicamentos();
             medicamentosList.add(novoMedicamento);
             break;
         case 2:
             categoria = "indeferenciado";
-            Indiferenciado novoIndiferenciado = new Indiferenciado(nome, descricao, categoria, stock, preco, iva, dia ,mes, ano);
+            Indiferenciado novoIndiferenciado = new Indiferenciado(nome, descricao, categoria, stock, preco, iva, validade);
             novoIndiferenciado.guardarIndiferenciados();
             indiferenciadosList.add(novoIndiferenciado);
             break;
@@ -87,5 +146,27 @@ public class Produto extends Data implements Serializable {
             break;
         }
 
+    }
+    
+    public static void editarProduto(List<Medicamento> medicamentosList, List<Indiferenciado> indiferenciadosList){
+        
+        int op = 0;
+        
+        do{
+        println("Categoria do produto a editar:");
+        println("1. Medicamento");
+        println("2. Indiferenciado");
+        println("0. Sair");
+        
+        op = readInt();
+        
+        switch(op){
+            case 1:
+                editar.menuEditarMedicamento();
+                break;
+            case 2:
+        }
+        }while (op != 0);
+       
     }
 }

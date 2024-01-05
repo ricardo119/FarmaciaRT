@@ -4,42 +4,34 @@ import java.io.Serializable;
 
 public class Morada implements Serializable {
     
-    public String local;
-    public String localidade;
-    public String postal;
-    public String freguesia;
     public String rua;
+    public String postal;
+    public String localidade;
+    
+   
     
     public Morada(){
     
 }
     
-    public Morada(String local, String localidade, String postal, String freguesia, String rua){
+    public Morada(String rua , String postal, String localidade){
         
-        this.local = local;
-        this.localidade = localidade;
-        this.postal = postal;
-        this.freguesia = freguesia;
         this.rua = rua;
+        this.postal = postal;
+        this.localidade = localidade;
+            
     }
     
-    public String getLocal(){
-        return local;
+    public String getRua(){
+        return rua;
     }
     
-     public String getLocalidade(){
+    public String getPostal(){
+        return postal;
+    }
+   
+    public String getLocalidade(){
         return localidade;
     }
      
-      public String getPostal(){
-        return postal;
-    }
-      
-       public String getFreguesia(){
-        return freguesia;
-    }
-       
-        public String getRua(){
-        return rua;
-    }
 }

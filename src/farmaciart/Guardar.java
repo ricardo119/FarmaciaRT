@@ -31,7 +31,7 @@ public class Guardar extends Produto {
             BufferedWriter bw = new BufferedWriter(fw);
 
             // Escreve os detalhes do novo produto no arquivo
-            String indiferenciadoInfo = "Nome:" + indiferenciado.getNome() + ", Descricao:" + indiferenciado.getDescricao()  + " Preço:" + indiferenciado.getPreco() + " IVA:" + indiferenciado.getIva() + " Validade:" + indiferenciado.getValidade(); 
+            String indiferenciadoInfo = "Nome:" + indiferenciado.getNome() + " Descricao:" + indiferenciado.getDescricao()  + " Preço:" + indiferenciado.getPreco() + " IVA:" + indiferenciado.getIva() + " Validade:" + indiferenciado.getValidade(); 
             bw.write(indiferenciadoInfo);
             bw.newLine(); // Pula para a próxima linha para o próximo produto
             bw.close(); // Fecha o arquivo

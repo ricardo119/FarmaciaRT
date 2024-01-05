@@ -13,40 +13,17 @@ public class Indiferenciado extends Produto implements Serializable {
         
     }
     
-    public Indiferenciado(String nome , String descricao, String categoria, int stock , double preco , double iva, int dia, int mes, int ano){
+    public Indiferenciado(String nome , String descricao, String categoria, int stock , double preco , double iva, Data validade){
         
-        super(nome, descricao, stock, preco, iva, dia, mes, ano);
+        super(nome, descricao, stock, preco, iva, validade);
         this.categoria = categoria;
     }
     
-    
-    public String getNome() {
-        return nome;
-    }
-    
-    public String getDescricao() {
-        return descricao;
-    }
     
     public String getCategoria() {
         return categoria;
     }
     
-    public double getPreco() {
-        return preco;
-    }
-    
-    public int getStock() {
-        return stock;
-    }
-    
-    public double getIva() {
-        return iva;
-    }
-    
-    public String getValidade() {
-        return super.toString();
-    }
     
     public void guardarIndiferenciados() {
         Guardar guardar = new Guardar();

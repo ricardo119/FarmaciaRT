@@ -4,6 +4,8 @@ package farmaciart;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import static p1.P1App.println;
+import static p1.P1App.readLine;
 
 
 public class Medicamento extends Produto implements Serializable{
@@ -14,39 +16,22 @@ public class Medicamento extends Produto implements Serializable{
         
     }
     
-    public Medicamento(String nome , String descricao, String categoria, int stock , double preco , double iva, int dia, int mes, int ano){
+    public Medicamento(String nome , String descricao, String categoria, int stock , double preco , double iva, Data validade){
         
-        super(nome, descricao, stock, preco, iva, dia, mes, ano);
+        super(nome, descricao, stock, preco, iva, validade);
         this.categoria = categoria;
-    }
-    
-    public String getNome() {
-        return nome;
-    }
-    
-    public String getDescricao() {
-        return descricao;
     }
     
     public String getCategoria() {
         return categoria;
     }
     
-    public double getPreco() {
-        return preco;
+    
+    public String setCategoria(String categoria){
+        this.categoria = categoria;
+        return categoria;
     }
     
-    public int getStock() {
-        return stock;
-    }
-    
-    public double getIva() {
-        return iva;
-    }
-    
-    public String getValidade() {
-        return super.toString(); // Assuming Data class has a toString method
-    }
     
     public void guardarMedicamentos() {
         Guardar guardar = new Guardar();
