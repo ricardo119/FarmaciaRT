@@ -21,17 +21,4 @@ public class Morada implements Serializable {
         this.localidade = localidade;
             
     }
-    
-    public String getRua(){
-        return rua;
-    }
-    
-    public String getPostal(){
-        return postal;
-    }
-   
-    public String getLocalidade(){
-        return localidade;
-    }
-     
 }

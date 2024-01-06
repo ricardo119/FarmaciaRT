@@ -88,12 +88,11 @@ public class FarmaciaRT extends P1App {
         int admin;
     
         do {
-            println("Menu Administrador:");
+            println("\nMenu Administrador:\n");
             println("1. Adicionar Produto");
-            println("2. Gestão Clientes");
+            println("2. Gestao de Clientes");
             println("3. Listar Medicamentos");
             println("4. Listar Indiferenciados");
-            println("5. Editar Produto");
             println("0. Voltar ao menu principal");
 
         admin = readInt();
