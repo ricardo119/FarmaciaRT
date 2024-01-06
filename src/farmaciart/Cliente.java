@@ -14,7 +14,6 @@ public class Cliente extends Morada implements Serializable {
     public String nif;
 
     public Cliente(String nome, String nif, String rua, String postal, String localidade) {
-        
         super(rua, postal, localidade);
         this.nome = nome;
         this.nif = nif;
@@ -26,7 +25,7 @@ public class Cliente extends Morada implements Serializable {
 
         try {
             FileOutputStream arquivo = new FileOutputStream(nomeArquivo, true);
-            String clienteInfo = "\nCliente:" + nome + ";\nNIF:" + nif + ";\nRua:" + rua + ";\nCodigo Postal:" + postal +";\nLocalidade:;" + localidade +""; 
+            String clienteInfo = "\nCliente:" + nome + ";\nNIF:" + nif + ";\nRua:" + rua + ";\nCodigo Postal:" + postal + ";\nLocalidade:;" + localidade + "";
             arquivo.write(clienteInfo.getBytes());
             arquivo.close();
 
@@ -36,26 +35,50 @@ public class Cliente extends Morada implements Serializable {
         }
     }
 //*************************INTRODUZIR NOVO CLIENTE****************************//
+   
     public static void adicionarCliente() {
        
-        
-        println("Nome do cliente:");
-        String nome = readLine();
+        String nome, nif, rua, postal, localidade;
 
-        println("NIF:");
-        String nif = readLine();
+    println("Digite SAIR para voltar ao menu Atendimento");
+    
+    println("Nome do cliente:");
+    nome = readLine();
+    if (nome.equalsIgnoreCase("sair")) {
+        return;
+    }
 
-        println("Rua:");
-        String rua = readLine();
-        
-        println("Codigo Postal:");
-        String postal = readLine();
-        
-        println("Localidade:");
-        String localidade = readLine();
-        
+    println("NIF:");
+    nif = readLine();
+    if (nif.equalsIgnoreCase("sair")) {
+       FarmaciaRT.menuAtendimento();
+        return;
+    }
+
+    println("Rua:");
+    rua = readLine();
+    if (rua.equalsIgnoreCase("sair")) {
+        FarmaciaRT.menuAtendimento();
+        return;
+    }
+
+    println("Codigo Postal:");
+    postal = readLine();
+    if (postal.equalsIgnoreCase("sair")) {
+        FarmaciaRT.menuAtendimento();
+        return;
+    }
+
+    println("Localidade:");
+    localidade = readLine();
+    if (localidade.equalsIgnoreCase("sair")) {
+        FarmaciaRT.menuAtendimento();
+        return;
+    }
+
         adicionarCliente(nome, nif , rua , postal ,localidade ); 
     }
+
 //****************LISTAR CLIENTE**********************************************//
     public static void listarClientes() {
         String nomeArquivo = "clientes.dat";

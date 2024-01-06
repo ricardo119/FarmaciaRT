@@ -40,7 +40,7 @@ public class FarmaciaRT extends P1App {
     
     //********************* MENU ATENDIMENTO   ********************************//
     
-    private static void menuAtendimento(){
+    public static void menuAtendimento(){
      
         
         int opcao;
