@@ -6,7 +6,6 @@ import java.io.Serializable;
 
 public class Data implements Serializable {
     
-    public int dia;
     public int mes;
     public int ano;
     
@@ -15,31 +14,24 @@ public class Data implements Serializable {
     }
     
     
-    public Data(int dia, int mes, int ano){
-        this.dia = dia;
+    public Data(int mes, int ano){
         this.mes = mes;
         this.ano = ano;    
     }
     
-    public int getDia(){
-        return dia;
-    }
     
     public int getMes(){
         return mes;
     }
     
-    public int getAno(){
-        return ano;
-    }
+
     
     
     public String toString() {
-        return String.format("%02d/%02d/%04d", dia, mes, ano);
+        return String.format("%02d/%04d",mes, ano);
     }
     
-    public void setValidade(int dia, int mes, int ano){
-        this.dia = dia;
+    public void setValidade(int mes, int ano){
         this.mes = mes;
         this.ano = ano;
     }

@@ -1,9 +1,9 @@
 package farmaciart;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import static p1.P1App.println;
 
 
@@ -15,58 +15,101 @@ public class Guardar extends Produto {
     
     
     //******************CRIAR FICHEIRO PARA INDIFERENCIADOS *************************//
-    public void salvarIndiferenciado(Indiferenciado indiferenciado) {
-        String nomeArquivo = "indiferenciado"; // Nome do arquivo de dados
+     public void guardarIndiferenciado(Indiferenciado indiferenciado) {
+        String nomeArquivo = "indiferenciados.txt";
 
         try {
-            File arquivo = new File(nomeArquivo);
+            // Load existing products from the file
+            List<Indiferenciado> existingIndiferenciados = Carregar.carregarIndiferenciados();
 
-            // Se o arquivo não existir, cria um novo
-            if (!arquivo.exists()) {
-                arquivo.createNewFile();
+            // Check if the product already exists in the list
+            boolean exists = false;
+            for (int i = 0; i < existingIndiferenciados.size(); i++) {
+                Indiferenciado existingIndiferenciado = existingIndiferenciados.get(i);
+                if (existingIndiferenciado.getNome().equalsIgnoreCase(indiferenciado.getNome())) {
+                    exists = true;
+                    existingIndiferenciados.set(i, indiferenciado); // Update the existing product
+                    break;
+                }
             }
 
-            // Abre o arquivo para escrita
-            FileWriter fw = new FileWriter(arquivo, true);
-            BufferedWriter bw = new BufferedWriter(fw);
+            // If the product does not exist, add a new one
+            if (!exists) {
+                existingIndiferenciados.add(indiferenciado);
+            }
 
-            // Escreve os detalhes do novo produto no arquivo
-            String indiferenciadoInfo = "Nome:" + indiferenciado.getNome() + " Descricao:" + indiferenciado.getDescricao()  + " Preço:" + indiferenciado.getPreco() + " IVA:" + indiferenciado.getIva() + " Validade:" + indiferenciado.getValidade(); 
-            bw.write(indiferenciadoInfo);
-            bw.newLine(); // Pula para a próxima linha para o próximo produto
-            bw.close(); // Fecha o arquivo
-
-           println("Produto adicionado com sucesso ao arquivo!");
+            // Save the updated list to the file
+            guardarListaIndiferenciados(existingIndiferenciados);
         } catch (IOException e) {
-            println("Erro ao salvar o produto: " + e.getMessage());
+            println("Erro ao salvar indiferenciado: " + e.getMessage());
+        }
+    }
+
+    private void guardarListaIndiferenciados(List<Indiferenciado> indiferenciadosList) throws IOException {
+        String nomeArquivo = "indiferenciados.txt";
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomeArquivo))) {
+            for (Indiferenciado indiferenciado : indiferenciadosList) {
+                String indiferenciadoInfo = indiferenciado.getNome() + ";" + indiferenciado.getDescricao() + ";" +
+                        indiferenciado.getStock() + ";" + indiferenciado.getPreco() + ";" + indiferenciado.getIva() + ";" +
+                        indiferenciado.getValidade() + ";" + indiferenciado.getVisibilidade();
+                bw.write(indiferenciadoInfo);
+                bw.newLine();
+            }
         }
     }
     
     //******************CRIAR FICHEIRO PARA MEDICAMENTOS *************************//
-     public void salvarMedicamento(Medicamento medicamento) {
-        String nomeArquivo = "medicamentos"; // Nome do arquivo de dados
+    public void guardarMedicamento(Medicamento medicamento) {
+        String nomeArquivo = "medicamentos.txt";
 
         try {
-            File arquivo = new File(nomeArquivo);
+            // Load existing products from the file
+            List<Medicamento> existingMedicamentos = Carregar.carregarMedicamentos();
 
-            // Se o arquivo não existir, cria um novo
-            if (!arquivo.exists()) {
-                arquivo.createNewFile();
+            // Check if the product already exists in the list
+            boolean exists = false;
+            for (Medicamento existingMedicamento : existingMedicamentos) {
+                if (existingMedicamento.getNome().equalsIgnoreCase(medicamento.getNome())) {
+                    exists = true;
+                    break;
+                }
             }
 
-            // Abre o arquivo para escrita
-            FileWriter fw = new FileWriter(arquivo, true);
-            BufferedWriter bw = new BufferedWriter(fw);
+            // If the product already exists, update it; otherwise, add a new one
+            if (exists) {
+                for (int i = 0; i < existingMedicamentos.size(); i++) {
+                    Medicamento existingMedicamento = existingMedicamentos.get(i);
+                    if (existingMedicamento.getNome().equalsIgnoreCase(medicamento.getNome())) {
+                        existingMedicamentos.set(i, medicamento);
+                        break;
+                    }
+                }
+            } else {
+                // If the product does not exist, add a new one
+                existingMedicamentos.add(medicamento);
+            }
 
-            String medicamentoInfo = "Nome:" + medicamento.getNome() + ", Descricao:" + medicamento.getDescricao()+ " Preço:" + medicamento.getPreco() + " IVA:" + medicamento.getIva() + " Validade:" + medicamento.getValidade(); 
-            bw.write(medicamentoInfo);
-            bw.newLine(); // Pula para a próxima linha para o próximo produto
-            bw.close(); // Fecha o arquivo
-
-            println("Produto adicionado com sucesso ao arquivo!");
+            // Save the updated list to the file
+            guardarListaMedicamentos(existingMedicamentos);
         } catch (IOException e) {
-            println("Erro ao salvar o produto: " + e.getMessage());
+            println("Erro ao salvar medicamento: " + e.getMessage());
         }
     }
+
     
+    
+    private void guardarListaMedicamentos(List<Medicamento> medicamentosList) throws IOException {
+        String nomeArquivo = "medicamentos.txt";
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomeArquivo))) {
+            for (Medicamento medicamento : medicamentosList) {
+                String medicamentoInfo = medicamento.getNome() + ";" + medicamento.getDescricao() + ";" +
+                        medicamento.getStock() + ";" + medicamento.getPreco() + ";" + medicamento.getIva() + ";" +
+                        medicamento.getValidade() + ";" + medicamento.getVisibilidade();
+                bw.write(medicamentoInfo);
+                bw.newLine();
+            }
+        }
+    }
 }

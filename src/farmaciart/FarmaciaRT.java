@@ -40,7 +40,7 @@ public class FarmaciaRT extends P1App {
     
     //********************* MENU ATENDIMENTO   ********************************//
     
-    private static void menuAtendimento(){
+    public static void menuAtendimento(){
      
         
         int opcao;
@@ -79,7 +79,7 @@ public class FarmaciaRT extends P1App {
     
     //*********************MENU ADMINISTRADOR ********************************//
     
-    private static void menuAdministrador() {
+    public static void menuAdministrador() {
         
         List<Medicamento> medicamentosList = new ArrayList<>();
         List<Indiferenciado> indiferenciadosList = new ArrayList<>();
@@ -106,10 +106,10 @@ public class FarmaciaRT extends P1App {
                 Cliente.listarClientes();
                 break;
             case 3:
-                listar.listarMedicamentos(medicamentosList);
+                listar.listarMedicamentos();
                 break;
             case 4:
-                listar.listarIndiferenciados(indiferenciadosList);
+                listar.listarIndiferenciados();
                 break;
             case 0:
                 println("Voltar ao menu principal...");
