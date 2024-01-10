@@ -95,7 +95,7 @@ public class Produto extends Data implements Serializable {
     println("Digite a descrição do produto:");
     descricao = readLine();
 
-    println("Digite o estoque do produto:");
+    println("Digite o stock do produto:");
     stock = readInt();
 
     println("Digite o preço do produto:");
