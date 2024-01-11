@@ -16,7 +16,6 @@ public class Medicamento extends Produto implements Serializable{
     }
     
     public Medicamento(String nome , String descricao, String categoria, int stock , double preco , double iva, Data validade, boolean isVisivel){
-        
         super(nome, descricao, stock, preco, iva, validade);
         this.categoria = categoria;
         this.isVisivel = isVisivel;
@@ -45,8 +44,8 @@ public class Medicamento extends Produto implements Serializable{
     }
     
     public void listarMedicamentos(){
-    Listar listar = new Listar();
-    List<Medicamento> medicamentosList = new ArrayList<>();
-    listar.listarMedicamentos();
+        Listar listar = new Listar();
+        List<Medicamento> medicamentosList = new ArrayList<>();
+        listar.listarMedicamentos();
     }
 }

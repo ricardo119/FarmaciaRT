@@ -57,10 +57,10 @@ public class Listar extends Produto {
         }
 
         leitor.close();
-    } catch (IOException | NumberFormatException e) {
+        } catch (IOException | NumberFormatException e) {
         println("Erro ao listar indiferenciados: " + e.getMessage());
+        }
     }
-}
     
     
    public static void listarMedicamentosVisiveis() {
@@ -108,10 +108,53 @@ public class Listar extends Produto {
         }
 
         leitor.close();
-    } catch (IOException | NumberFormatException e) {
+        } catch (IOException | NumberFormatException e) {
         println("Erro ao listar medicamentos: " + e.getMessage());
+        }
     }
-}
+   
+    public static void listarClientesVisiveis(){
+        String nomeArquivo = "clientes.dat";
+
+    try {
+        BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
+        String linha;
+
+        println("\nLista de Clientes:");
+
+        while ((linha = leitor.readLine()) != null) {
+            String[] parts = linha.split(";");
+
+            if (parts.length >= 3) { 
+                String nome = parts[0];
+                String nif = parts[1];
+                String rua = parts[2];
+                String postal = parts[3];
+                String localidade = parts[4];
+
+                boolean isVisivel = Boolean.parseBoolean(parts[5]);
+
+                // Check if isVisivel is true before listing
+                if (isVisivel) {
+                    StringBuilder output = new StringBuilder();
+                    output.append("Nome: ").append(nome);
+                    output.append(" NIF: ").append(nif);
+                    output.append(" Rua: ").append(rua);
+                    output.append(" Código Postal: ").append(postal);
+                    output.append(" Localidade: ").append(localidade);
+
+                    println(output.toString());
+                }
+            } else {
+                println("Invalid line format: " + linha);
+            }
+        }
+
+        leitor.close();
+        } catch (IOException | NumberFormatException e) {
+        println("Erro ao listar medicamentos: " + e.getMessage());
+        }
+    }
 
     public static void listarIndiferenciados() {
     String nomeArquivo = "indiferenciados.txt";
@@ -156,10 +199,10 @@ public class Listar extends Produto {
         }
 
         leitor.close();
-    } catch (IOException | NumberFormatException e) {
+        } catch (IOException | NumberFormatException e) {
         println("Erro ao listar indiferenciados: " + e.getMessage());
-    }
-}
+        }
+    }   
     
     
    public static void listarMedicamentos() {
@@ -206,8 +249,27 @@ public class Listar extends Produto {
         }
 
         leitor.close();
-    } catch (IOException | NumberFormatException e) {
+        } catch (IOException | NumberFormatException e) {
         println("Erro ao listar medicamentos: " + e.getMessage());
+        }
     }
-}
+   //****************LISTAR CLIENTE**********************************************//
+    public static void listarClientes() {
+        String nomeArquivo = "clientes.dat";
+
+        try {
+            BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
+            String linha;
+
+            println("\nGESTAO DE CLIENTES\n");
+
+            while ((linha = leitor.readLine()) != null) {
+                println(linha);
+            }
+
+            leitor.close();
+        } catch (IOException e) {
+            println("Erro ao listar clientes: " + e.getMessage());
+        }
+    }
 }

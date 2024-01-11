@@ -11,7 +11,7 @@ public class FarmaciaRT extends P1App {
         int escolha;
         
         do {
-            println(" Farmácia R&T!");
+            println("Farmácia R&T!");
             println("Selecione uma opção:");
             println("1. Atendimento");
             println("9. Menu Administrador");
@@ -42,12 +42,13 @@ public class FarmaciaRT extends P1App {
     
     public static void menuAtendimento(){
      
+        List<Cliente> clientesList = new ArrayList<>();
         
         int opcao;
         
         do {
         
-        println("\nMenu de Atendimento:\n");
+        println("\nMenu de Atendimento:");
         println("1.Procurar cliente:");
         println("2.NIF do cliente:");
         println("3.Criar ficha de cliente:");
@@ -57,13 +58,13 @@ public class FarmaciaRT extends P1App {
 
         switch(opcao) {
             case 1:
-                //Cliente.();
+                //Listar.listarClientesVisiveis();
                 break;
             case 2:
                 //atendimento.cliente();
                 break;
             case 3:
-                Cliente.adicionarCliente();
+                Cliente.adicionarCliente(clientesList);
                 break;
             case 0:
                 println("Voltar ao menu principal...");
@@ -88,7 +89,7 @@ public class FarmaciaRT extends P1App {
         int admin;
     
         do {
-            println("\nMenu Administrador:\n");
+            println("\nMenu Administrador:");
             println("1. Adicionar Produto");
             println("2. Gestao de Clientes");
             println("3. Listar Medicamentos");
@@ -102,13 +103,13 @@ public class FarmaciaRT extends P1App {
                 Produto.novoProduto(medicamentosList, indiferenciadosList);
                 break;
             case 2:
-                Cliente.listarClientes();
+                listar.listarClientesVisiveis();
                 break;
             case 3:
-                listar.listarMedicamentos();
+                listar.listarMedicamentosVisiveis();
                 break;
             case 4:
-                listar.listarIndiferenciados();
+                listar.listarIndiferenciadosVisiveis();
                 break;
             case 0:
                 println("Voltar ao menu principal...");

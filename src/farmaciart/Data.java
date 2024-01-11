@@ -24,7 +24,9 @@ public class Data implements Serializable {
         return mes;
     }
     
-
+    public int getAno(){
+        return ano;
+    }
     
     
     public String toString() {

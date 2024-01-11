@@ -20,7 +20,7 @@ public class Carregar {
             while ((linha = leitor.readLine()) != null) {
                 String[] parts = linha.split(";");
 
-                if (parts.length >= 7) {  // Assuming a minimum number of parts
+                if (parts.length >= 7) {
                     String nome = parts[0];
                     String descricao = parts[1];
                     int stock = Integer.parseInt(parts[2]);
@@ -59,7 +59,7 @@ public class Carregar {
             while ((linha = leitor.readLine()) != null) {
                 String[] parts = linha.split(";");
 
-                if (parts.length >= 7) {  // Assuming a minimum number of parts
+                if (parts.length >= 7) {
                     String nome = parts[0];
                     String descricao = parts[1];
                     int stock = Integer.parseInt(parts[2]);
@@ -85,5 +85,39 @@ public class Carregar {
         }
 
         return indiferenciadosList;
+    }
+    
+    public static List<Cliente> carregarClientes(){
+        List<Cliente> clientesList = new ArrayList<>();
+        
+        String nomeArquivo = "clientes.dat";
+
+        try (BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo))) {
+            String linha;
+
+            while ((linha = leitor.readLine()) != null) {
+                String[] parts = linha.split(";");
+
+                if (parts.length >= 4) {
+                    String nome = parts[0];
+                    String nif = parts[1];
+                    String rua = parts[2];
+                    String postal = parts[3];
+                    String localidade = parts[4];
+
+                    boolean isVisivel = Boolean.parseBoolean(parts[5]);
+
+                    Cliente cliente = new Cliente(nome, nif, rua, postal, localidade, isVisivel);
+                    clientesList.add(cliente);
+                } else {
+                    System.out.println("Invalid line format in " + nomeArquivo + ": " + linha);
+                }
+            }
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Error loading indiferenciados: " + e.getMessage());
+        }
+
+        return clientesList;
+        
     }
 }
