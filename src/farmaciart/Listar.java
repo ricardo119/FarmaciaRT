@@ -204,8 +204,9 @@ public class Listar extends Produto {
         }
     }   
     
-    
-   public static void listarMedicamentos() {
+//*******************LISTAR MEDICAMENTOS **************************************//  
+   
+    public static void listarMedicamentos() {
     String nomeArquivo = "medicamentos.txt";
 
     try {

@@ -21,7 +21,7 @@ public class FarmaciaRT extends P1App {
 
             switch(escolha) {
                 case 1:
-                    menuAtendimento();
+                    Atendimento.menuAtendimento();
                     break;
                 case 9:
                     menuAdministrador();
@@ -37,46 +37,6 @@ public class FarmaciaRT extends P1App {
         } while (escolha != 0);
         
     }
-    
-    //********************* MENU ATENDIMENTO   ********************************//
-    
-    public static void menuAtendimento(){
-     
-        List<Cliente> clientesList = new ArrayList<>();
-        
-        int opcao;
-        
-        do {
-        
-        println("\nMenu de Atendimento:");
-        println("1.Procurar cliente:");
-        println("2.NIF do cliente:");
-        println("3.Criar ficha de cliente:");
-        println("0. Voltar ao menu principal");
-
-        opcao = readInt();
-
-        switch(opcao) {
-            case 1:
-                //Listar.listarClientesVisiveis();
-                break;
-            case 2:
-                //atendimento.cliente();
-                break;
-            case 3:
-                Cliente.adicionarCliente(clientesList);
-                break;
-            case 0:
-                println("Voltar ao menu principal...");
-                break;
-            default:
-                println("Opção inválida. Por favor, selecione novamente.");
-                break;
-        }
-    } while (opcao != 0);
-}
-        
-    
     
     //*********************MENU ADMINISTRADOR ********************************//
     

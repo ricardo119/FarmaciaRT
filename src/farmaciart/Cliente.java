@@ -69,28 +69,28 @@ public class Cliente extends Morada implements Serializable {
     println("NIF:");
     nif = readLine();
     if (nif.equalsIgnoreCase("sair")) {
-       FarmaciaRT.menuAtendimento();
+        Atendimento.menuAtendimento();
         return;
     }
 
     println("Rua:");
     rua = readLine();
     if (rua.equalsIgnoreCase("sair")) {
-        FarmaciaRT.menuAtendimento();
+        Atendimento.menuAtendimento();
         return;
     }
 
     println("Codigo Postal:");
     postal = readLine();
     if (postal.equalsIgnoreCase("sair")) {
-        FarmaciaRT.menuAtendimento();
+        Atendimento.menuAtendimento();
         return;
     }
 
     println("Localidade:");
     localidade = readLine();
     if (localidade.equalsIgnoreCase("sair")) {
-        FarmaciaRT.menuAtendimento();
+        Atendimento.menuAtendimento();
         return;
     }
        
@@ -191,6 +191,7 @@ public class Cliente extends Morada implements Serializable {
         }
         
     }
+//********************** EDITAR CLIENTE**************************************//
     
     public static void editarCliente(List<Cliente> clientesList){
         
