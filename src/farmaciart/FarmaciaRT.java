@@ -44,7 +44,7 @@ public class FarmaciaRT extends P1App {
         
         List<Medicamento> medicamentosList = new ArrayList<>();
         List<Indiferenciado> indiferenciadosList = new ArrayList<>();
-        Listar listar = new Listar();
+        List<Cliente> clientesList = new ArrayList<>();
         
         int admin;
     
@@ -63,13 +63,13 @@ public class FarmaciaRT extends P1App {
                 Produto.novoProduto(medicamentosList, indiferenciadosList);
                 break;
             case 2:
-                listar.listarClientesVisiveis();
+                Cliente.menuGestaoCliente(clientesList);
                 break;
             case 3:
-                listar.listarMedicamentosVisiveis();
+                Listar.listarClientesVisiveis();
                 break;
             case 4:
-                listar.listarIndiferenciadosVisiveis();
+                //listar.listarIndiferenciadosVisiveis();
                 break;
             case 0:
                 println("Voltar ao menu principal...");

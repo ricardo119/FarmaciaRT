@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import static p1.P1App.println;
-import static p1.P1App.readDouble;
 import static p1.P1App.readInt;
 import static p1.P1App.readLine;
 
@@ -49,7 +48,36 @@ public class Cliente extends Morada implements Serializable {
         this.isVisivel = isVisivel;
     }
     
-
+    public static void menuGestaoCliente(List<Cliente> clientesList){
+        
+        int op = 0;
+        
+        do{
+            println("Menu de Gestaõ de Cliente");
+            println("1. Eliminar cliente");
+            println("2. Editar cliente geral");
+            println("3. Editar cliente");
+            println("0. Sair");
+            
+            op = readInt();
+            
+            switch(op){
+                case 1:
+                    eliminarCliente(clientesList);
+                    break;
+                case 2:
+                    editarClienteGeral(clientesList);
+                    break;
+                case 3:
+                    editarCliente(clientesList);
+                    break;
+                case 0:
+                    break;
+                default:
+                    println("Escolha uma opção válida");       
+            }
+        }while (op != 0);
+    }
     
 //*************************INTRODUZIR NOVO CLIENTE****************************//
    
@@ -118,8 +146,9 @@ public class Cliente extends Morada implements Serializable {
         String nomeProcura;
         boolean found = false;
         
-        Listar listar = new Listar();
-        listar.listarClientes();
+        clientesList = Carregar.carregarClientes();
+        
+        Listar.listarClientes();
         
         println("Digita o nome do cliente a remover da lista");
         nomeProcura = readLine();
@@ -127,14 +156,14 @@ public class Cliente extends Morada implements Serializable {
         for (Cliente cliente : clientesList) {
             println(cliente.getNome());
             if (cliente.getNome().trim().equalsIgnoreCase(nomeProcura)) {
+                found = true;
                 boolean isVisivel = cliente.getVisibilidade();
                 cliente.setVisibilidade(!isVisivel);
-                found = true;
             
                 if (isVisivel) {
-                    println("Medicamento removido da lista com sucesso.");
+                    println("Cliente removido da lista com sucesso.");
                 } else {
-                    println("Medicamento adicionado a lista com sucesso.");
+                    println("Cliente adicionado a lista com sucesso.");
                 }
                 
                 cliente.guardarCliente();
@@ -143,7 +172,7 @@ public class Cliente extends Morada implements Serializable {
         }
 
         if (!found) {
-            println("Medicamento não encontrado.");
+            println("Cliente não encontrado.");
         }
         
     }
@@ -153,8 +182,9 @@ public class Cliente extends Morada implements Serializable {
         String nomeProcura;
         boolean encontrado = false;
         
-        Listar listar = new Listar();
-        listar.listarClientes();
+        Carregar.carregarClientes();
+        
+        Listar.listarClientes();
         
         println("Digita o nome do cliente a editar");
         nomeProcura = readLine();
@@ -198,8 +228,9 @@ public class Cliente extends Morada implements Serializable {
         String nomeProcura;
         boolean encontrado = false;
         
-        Listar listar = new Listar();
-        listar.listarClientes();
+        Carregar.carregarClientes();
+        
+        Listar.listarClientes();
         
         println("Digita o nome do cliente a editar");
         nomeProcura = readLine();
@@ -211,53 +242,34 @@ public class Cliente extends Morada implements Serializable {
 
                 do {
                     println("Escolha a informação a editar para o medicamento '" + nomeProcura + "':");
-                    println("1. Descrição");
-                    println("2. Stock");
-                    println("3. Preço");
-                    println("4. IVA");
-                    println("5. Validade");
+                    println("1. Nif");
+                    println("2. Rua");
+                    println("3. Código-Postal");
+                    println("4. Localidade");
                     println("0. Sair");
 
                     opcao = readInt();
 
                     switch (opcao) {
                         case 1:
-                            println("Digite a nova descrição:");
-                            String novaDescricao = readLine();
-                            medicamento.setDescricao(novaDescricao);
+                            println("Digite o novo NIF");
+                            String novoNif = readLine();
+                            cliente.setNif(novoNif);
                             break;
                         case 2:
-                            println("Digita o novo stock:");
-                            int novoStock = readInt();
-                            medicamento.setStock(novoStock);
+                            println("Digita a nova rua");
+                            String novaRua = readLine();
+                            cliente.setRua(novaRua);
                             break;
                         case 3:
-                            println("Digita o novo preco:");
-                            double novoPreco = readDouble();
-                            medicamento.setPreco(novoPreco);
+                            println("Digita o novo código-postal");
+                            String novoPostal = readLine();
+                            cliente.setPostal(novoPostal);
                             break;
                         case 4:
-                            println("Digita o novo IVA:");
-                            double novoIva = readInt();
-                            medicamento.setIva(novoIva);
-                            break;
-                        case 5:
-                            println("Digita a validade do produto (mm/aaaa)");
-                            String expirationDateInput = readLine();
-    
-                            String[] dateComponents = expirationDateInput.split("/");
-    
-                            int mes = Integer.parseInt(dateComponents[0]);
-                            int ano = Integer.parseInt(dateComponents[1]);
-    
-                            Data novaValidade = new Data(mes,ano);
-                            medicamento.setValidade(novaValidade);
-                            
-                            medicamento.guardarMedicamentos();
-                            
-                            break;
-                        case 0:
-                            println("A sair da edicao");
+                            println("Digita a nova localidade");
+                            String novaLocalidade = readLine();
+                            cliente.setLocalidade(novaLocalidade);
                             break;
                         default:
                             println("Opção inválida. Tente novamente");
@@ -269,7 +281,7 @@ public class Cliente extends Morada implements Serializable {
         }
 
         if (!encontrado) {
-        println("Medicamento não encontrado.");
+        println("Cliente não encontrado.");
         }
     }
     

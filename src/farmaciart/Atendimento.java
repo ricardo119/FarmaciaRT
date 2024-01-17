@@ -95,7 +95,7 @@ public class Atendimento extends Cliente implements Serializable{
                 println(cliente.getNif());
                 if (cliente.getNif().trim().equalsIgnoreCase(nomeProcura)) {
                     found = true;
-                    Venda.menuVenda();
+                    //Venda.menuVenda();
         
                 }
             }
