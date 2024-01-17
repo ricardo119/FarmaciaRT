@@ -69,24 +69,23 @@ public class Atendimento extends Cliente implements Serializable{
     
     public static void procuraCliente (List<Cliente> clientesList, List<Medicamento> medicamentosList, List<Indiferenciado> indiferenciadosList, int menu) throws IOException{
       
-        String nomeProcura;
+        
         boolean found = false;
         
         clientesList = Carregar.carregarClientes();
         medicamentosList = Carregar.carregarMedicamentos();
         
-        Listar.listarClientes();
+        Listar.listarClientesVisiveis();
         
         if (menu == 1){ 
-                
+            String nomeProcura;    
             println("Digita o nome do Cliente");
             nomeProcura = readLine();
         
             for (Cliente cliente : clientesList ) {
                 if (cliente.getNome().trim().equalsIgnoreCase(nomeProcura)) {
-                    println("Filho da puta");
                     found = true;
-                    String nome = nomeProcura;
+                    String nome = cliente.getNome();
                     String nif = cliente.getNif();
                     Venda.novaVenda(medicamentosList, nome, nif);
                     
@@ -95,26 +94,29 @@ public class Atendimento extends Cliente implements Serializable{
             }
             
             if(!found){
-                
-               Cliente.adicionarCliente(clientesList);
+               println("Cliente nao encontrado. Rederiocinado para criar ficha"); 
+               Cliente.adicionarClienteVendaNome(clientesList, nomeProcura);
             }
         }
         if (menu == 2){ 
-                
+            String nifProcura;    
             println("Digita o NIF do Cliente");
-            nomeProcura = readLine();
+            nifProcura = readLine();
         
             for (Cliente cliente : clientesList ) {
                 println(cliente.getNif());
-                if (cliente.getNif().trim().equalsIgnoreCase(nomeProcura)) {
+                if (cliente.getNif().trim().equalsIgnoreCase(nifProcura)) {
                     found = true;
-                    //Venda.menuVenda();
-        
+                    String nome = cliente.getNome();
+                    String nif = cliente.getNif();
+                    Venda.novaVenda(medicamentosList, nome, nif);
+                        
+                    return;
                 }
             }
             if(!found){
                 
-               Cliente.adicionarCliente(clientesList);
+               Cliente.adicionarClienteVendaNif(clientesList, nifProcura);
             }
         }
    

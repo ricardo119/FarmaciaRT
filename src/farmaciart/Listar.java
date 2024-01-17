@@ -152,7 +152,7 @@ public class Listar extends Produto {
 
         leitor.close();
         } catch (IOException | NumberFormatException e) {
-        println("Erro ao listar medicamentos: " + e.getMessage());
+        println("Erro ao listar clientes: " + e.getMessage());
         }
     }
 
@@ -262,7 +262,26 @@ public class Listar extends Produto {
             BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
             String linha;
 
-            println("\nGESTAO DE CLIENTES\n");
+            println("GESTAO DE CLIENTES\n");
+
+            while ((linha = leitor.readLine()) != null) {
+                println(linha);
+            }
+
+            leitor.close();
+        } catch (IOException e) {
+            println("Erro ao listar clientes: " + e.getMessage());
+        }
+    }
+    
+    public static void listarVendas() {
+        String nomeArquivo = "vendas.dat";
+
+        try {
+            BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
+            String linha;
+
+            println("VENDAS\n");
 
             while ((linha = leitor.readLine()) != null) {
                 println(linha);

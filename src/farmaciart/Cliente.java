@@ -49,33 +49,65 @@ public class Cliente extends Morada implements Serializable {
         this.isVisivel = isVisivel;
     }
     
-    public static void menuGestaoCliente(List<Cliente> clientesList){
+    public void guardarCliente(){
+        Guardar guardar = new Guardar();
+        guardar.guardarCliente(this);
+    }
+    
+    public void listarClientes(){
+        Listar listar = new Listar();
+        List<Cliente> clientesList = new ArrayList<>();
+        listar.listarClientes();
+    }
+    
+    
+    
+    public static void menuGestaoCliente(List<Cliente> clientesList) throws IOException{
         
         int op = 0;
         
-        do{
-            println("Menu de Gestaõ de Cliente");
-            println("1. Eliminar cliente");
-            println("2. Editar cliente geral");
-            println("3. Editar cliente");
-            println("0. Sair");
+         do{
+            
+            println("Menu de Gestão de Clientes:");
+            println("1. Adicionar Cliente");
+            println("2. Remover Cliente da lista");
+            println("3. Editar informação de Cliente");
+            println("4. Editar todas as informações do Cliente");
+            println("5. Listar os Clientes Visiveis");
+            println("6. Listar todos os Clientes");
+            println("9. Voltar ao menu admistrador");
+            println("0. Voltar ao menu anterior");
             
             op = readInt();
             
-            switch(op){
-                case 1:
-                    eliminarCliente(clientesList);
-                    break;
-                case 2:
-                    editarClienteGeral(clientesList);
-                    break;
-                case 3:
-                    editarCliente(clientesList);
-                    break;
-                case 0:
-                    break;
-                default:
-                    println("Escolha uma opção válida");       
+            switch (op) {
+            case 1:
+                adicionarCliente(clientesList);
+                break;
+            case 2:
+                eliminarCliente(clientesList);
+                break;
+            case 3:
+                editarCliente(clientesList);
+                break;
+            case 4:
+                editarClienteGeral(clientesList);
+                break;
+            case 5:
+                Listar.listarClientesVisiveis();
+                break;
+            case 6:
+                Listar.listarClientes();
+                break;
+            case 9:
+                println("Voltar ao menu administrador...");
+                break;
+            case 0:
+                println("Voltar ao menu anterior...");
+                break;
+            default:
+                println("Opção inválida. Por favor, selecione novamente.");
+                break;
             }
         }while (op != 0);
     }
@@ -129,15 +161,88 @@ public class Cliente extends Morada implements Serializable {
     }
 
     
-    public void guardarCliente(){
-        Guardar guardar = new Guardar();
-        guardar.guardarCliente(this);
+    public static void adicionarClienteVendaNome(List<Cliente> clientesList, String nomeCliente) throws IOException {
+       
+        String nome, nif, rua, postal, localidade;
+        boolean isVisivel;
+
+    println("Digite SAIR para voltar ao menu Atendimento");
+    
+    nome = nomeCliente;
+
+    println("NIF:");
+    nif = readLine();
+    if (nif.equalsIgnoreCase("sair")) {
+        Atendimento.menuAtendimento();
+        return;
+    }
+
+    println("Rua:");
+    rua = readLine();
+    if (rua.equalsIgnoreCase("sair")) {
+        Atendimento.menuAtendimento();
+        return;
+    }
+
+    println("Codigo Postal:");
+    postal = readLine();
+    if (postal.equalsIgnoreCase("sair")) {
+        Atendimento.menuAtendimento();
+        return;
+    }
+
+    println("Localidade:");
+    localidade = readLine();
+    if (localidade.equalsIgnoreCase("sair")) {
+        Atendimento.menuAtendimento();
+        return;
+    }
+       
+    
+    Cliente novoCliente = new Cliente(nome, nif , rua, postal, localidade, true);
+    novoCliente.guardarCliente(); 
     }
     
-    public void listarClientes(){
-        Listar listar = new Listar();
-        List<Cliente> clientesList = new ArrayList<>();
-        listar.listarClientes();
+    public static void adicionarClienteVendaNif(List<Cliente> clientesList, String nifCliente) throws IOException {
+       
+        String nome, nif, rua, postal, localidade;
+        boolean isVisivel;
+
+        println("Digite SAIR para voltar ao menu Atendimento");
+    
+        nif = nifCliente;
+
+        println("Nome:");
+        nome = readLine();
+        if (nome.equalsIgnoreCase("sair")) {
+            Atendimento.menuAtendimento();
+            return;
+        }
+
+        println("Rua:");
+        rua = readLine();
+        if (rua.equalsIgnoreCase("sair")) {
+            Atendimento.menuAtendimento();
+            return;
+        }
+
+        println("Codigo Postal:");
+        postal = readLine();
+        if (postal.equalsIgnoreCase("sair")) {
+            Atendimento.menuAtendimento();
+            return;
+        }
+
+        println("Localidade:");
+        localidade = readLine();
+        if (localidade.equalsIgnoreCase("sair")) {
+            Atendimento.menuAtendimento();
+            return;
+        }
+       
+    
+        Cliente novoCliente = new Cliente(nome, nif , rua, postal, localidade, true);
+        novoCliente.guardarCliente(); 
     }
     
     
@@ -229,7 +334,7 @@ public class Cliente extends Morada implements Serializable {
         String nomeProcura;
         boolean encontrado = false;
         
-        Carregar.carregarClientes();
+        clientesList = Carregar.carregarClientes();
         
         Listar.listarClientes();
         
@@ -272,10 +377,14 @@ public class Cliente extends Morada implements Serializable {
                             String novaLocalidade = readLine();
                             cliente.setLocalidade(novaLocalidade);
                             break;
+                        case 0:
+                            break;
                         default:
                             println("Opção inválida. Tente novamente");
                     }
                 } while (opcao != 0);
+                
+                cliente.guardarCliente();
 
             break;
             }

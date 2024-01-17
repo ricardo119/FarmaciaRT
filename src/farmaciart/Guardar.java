@@ -152,15 +152,16 @@ public class Guardar extends Produto {
     
     
     public void guardarListaVendas(List<Venda> vendasList) throws IOException {
-        String nomeArquivo = "vendas.dat";
+    String nomeArquivo = "vendas.dat";
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomeArquivo))) {
-            for (Venda venda : vendasList) {
-                String VendaInfo = venda.getNomeCliente() + ";" + venda.getNifCliente() + ";" +
-                        venda.getQuantidade() + ";" + venda.getTotal() + ";";
-                bw.write(VendaInfo);
-                bw.newLine();
-            }
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomeArquivo, true))) {
+        for (Venda venda : vendasList) {
+            String vendaInfo = venda.getNomeCliente() + ";" + venda.getNifCliente() + ";" + venda.getMedicamento() + ";" +
+                    venda.getQuantidade() + ";" + venda.getTotal() + ";";
+            bw.write(vendaInfo);
+            bw.newLine();
         }
     }
+}
+
 }

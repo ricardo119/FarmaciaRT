@@ -1,5 +1,6 @@
 package farmaciart;
 
+import java.io.IOException;
 import static p1.P1App.println;
 import static p1.P1App.readDouble;
 import static p1.P1App.readInt;
@@ -81,6 +82,45 @@ public class Produto extends Data implements Serializable {
     }
     
     
+    public static void menuGestaoProduto(List<Medicamento> medicamentosList, List<Indiferenciado> indiferenciadosList) throws IOException{ 
+        
+        int op = 0;
+        
+        do{
+            println("Menu de Gestao de Produtos");
+            println("Editar Produtos");
+            println("Listar Medicamentos");
+            println("Listar Indiferenciados");
+            println("Listar todos os Medicamentos");
+            println("Listar todos os Indiferenciados");
+            
+            op = readInt();
+            
+            switch(op){
+                case 1:
+                    Produto.editarProduto(medicamentosList, indiferenciadosList);
+                    break;
+                case 2:
+                    Listar.listarMedicamentosVisiveis();
+                    break;
+                case 3:
+                    Listar.listarIndiferenciadosVisiveis();
+                    break;
+                case 4:
+                    Listar.listarMedicamentos();
+                    break;
+                case 5:
+                    Listar.listarIndiferenciados();
+                    break;
+                case 0:
+                    break;
+                default:
+                    println("Nenhuma opcao escolhida");
+            }
+            
+        }while(op != 0);
+    }
+    
  //******************ADICIONAR PRODUTO*************************************//
     
     public static void novoProduto(List<Medicamento> medicamentosList, List<Indiferenciado> indiferenciadosList) {
@@ -140,7 +180,7 @@ public class Produto extends Data implements Serializable {
 
     }
     
-    public static void editarProduto(List<Medicamento> medicamentosList, List<Indiferenciado> indiferenciadosList){
+    public static void editarProduto(List<Medicamento> medicamentosList, List<Indiferenciado> indiferenciadosList) throws IOException{
         
         int op = 0;
         
@@ -168,7 +208,7 @@ public class Produto extends Data implements Serializable {
        
     }
     
-    public static void menuEditarMedicamento(List<Medicamento> medicamentosList){
+    public static void menuEditarMedicamento(List<Medicamento> medicamentosList) throws IOException{
         
         int op = 0;
         
@@ -203,7 +243,7 @@ public class Produto extends Data implements Serializable {
         }while (op != 0);
     }
     
-    public static void menuEditarIndiferenciado(List<Indiferenciado> indiferenciadosList){
+    public static void menuEditarIndiferenciado(List<Indiferenciado> indiferenciadosList) throws IOException{
         
         int op = 0;
         

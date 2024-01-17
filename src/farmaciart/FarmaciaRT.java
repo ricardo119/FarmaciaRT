@@ -29,7 +29,6 @@ public class FarmaciaRT extends P1App {
                 case 9:
                     menuAdministrador();
                     break;
-                
                 case 0:
                     println("Você saiu do sistema. Até breve!");
                     break;
@@ -43,7 +42,7 @@ public class FarmaciaRT extends P1App {
     
     //*********************MENU ADMINISTRADOR ********************************//
     
-    public static void menuAdministrador() {
+    public static void menuAdministrador() throws IOException {
         
         List<Medicamento> medicamentosList = new ArrayList<>();
         List<Indiferenciado> indiferenciadosList = new ArrayList<>();
@@ -55,8 +54,8 @@ public class FarmaciaRT extends P1App {
             println("\nMenu Administrador:");
             println("1. Adicionar Produto");
             println("2. Gestao de Clientes");
-            println("3. Listar Medicamentos");
-            println("4. Listar Indiferenciados");
+            println("3. Gestao Produtos");
+            println("4. Gestao de Vendas");
             println("0. Voltar ao menu principal");
 
         admin = readInt();
@@ -72,8 +71,7 @@ public class FarmaciaRT extends P1App {
                 Listar.listarClientesVisiveis();
                 break;
             case 4:
-                //listar.listarIndiferenciadosVisiveis();
-                break;
+                Venda.menuGestaoVenda(vendasList);
             case 0:
                 println("Voltar ao menu principal...");
                 break;
