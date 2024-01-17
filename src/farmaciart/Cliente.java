@@ -1,5 +1,6 @@
 package farmaciart;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +82,7 @@ public class Cliente extends Morada implements Serializable {
     
 //*************************INTRODUZIR NOVO CLIENTE****************************//
    
-    public static void adicionarCliente(List<Cliente> clientesList) {
+    public static void adicionarCliente(List<Cliente> clientesList) throws IOException {
        
         String nome, nif, rua, postal, localidade;
         boolean isVisivel;

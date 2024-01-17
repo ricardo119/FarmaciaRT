@@ -1,2 +1,2 @@
-Bruffen;Analgegico;40;5.0;12.0;11/2030;true
+Bruffen;Analgegico;1;5.0;12.0;11/2030;true
 Benuron;Anti-inflamatório;50;5.0;12.0;12/2030;true

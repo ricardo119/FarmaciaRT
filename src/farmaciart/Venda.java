@@ -11,7 +11,8 @@ import static p1.P1App.readLine;
 
 
 public class Venda implements Serializable {
-    
+
+
     
    private List<Venda> vendasList = new ArrayList<>();
     private String nomeCliente;
@@ -69,7 +70,7 @@ public class Venda implements Serializable {
         //star.listarVendas();
     }
    
-    public static void novaVenda(List<Cliente> clientesList, String nomeCliente){
+    public static void novaVenda(List<Medicamento> medicamentosList, String nomeCliente, String nifCliente) throws IOException{
         
         int op = 0;
         
@@ -82,14 +83,14 @@ public class Venda implements Serializable {
             
             switch(op){
                 case 1:
-                    //vendaMedicamento();
+                    vendaMedicamento(medicamentosList,nomeCliente, nifCliente);
                     break;
             }
             
         }while(op != 0);
     }
     
-    public static void vendaMedicamento(List<? extends Medicamento> medicamentosList, Cliente cliente) throws IOException{
+    public static void vendaMedicamento(List<? extends Medicamento> medicamentosList, String nomeCliente, String nifCliente) throws IOException{
         
         String nomeProcura;
         boolean encontrado = false;
@@ -105,7 +106,6 @@ public class Venda implements Serializable {
             if (medicamento.getNome().trim().equalsIgnoreCase(nomeProcura)) {
                 encontrado = true;
                 
-                String nif = cliente.getNif();
                 println("Digita a quantidade a vender:");
                 
                 int quantidade = readInt();
@@ -119,7 +119,7 @@ public class Venda implements Serializable {
                 
                 double total = quantidade * medicamento.getPreco();
                 
-                Venda novaVenda = new Venda(cliente.getNome(), cliente.getNif(),quantidade,total);
+                Venda novaVenda = new Venda(nomeCliente, nifCliente,quantidade,total);
                 novaVenda.vendasList.add(novaVenda);  // Add the sale to the customer's list
                 novaVenda.guardarVendas();  // Save the sale using the instance method
 

@@ -1,6 +1,9 @@
 
 package farmaciart;
 
+import farmaciart.Indiferenciado;
+
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +16,10 @@ import static p1.P1App.readLine;
 
 public class Atendimento extends Cliente implements Serializable{
     
+    private static List<Medicamento> medicamentosList = new ArrayList<>();
+    private static List<Indiferenciado> indiferenciadosList = new ArrayList<>();
+    private static List<Cliente> clientesList = new ArrayList<>();
+    
    
     public Atendimento(String nome, String nif, String rua, String postal, String localidade, boolean isVisivel){
     
@@ -22,9 +29,8 @@ public class Atendimento extends Cliente implements Serializable{
     
       //********************* MENU ATENDIMENTO   ********************************//
     
-    public static void menuAtendimento(){
+    public static void menuAtendimento() throws IOException{
      
-        List<Cliente> clientesList = new ArrayList<>();
         
         int opcao;
         
@@ -40,10 +46,10 @@ public class Atendimento extends Cliente implements Serializable{
 
         switch(opcao) {
             case 1:
-                procuraCliente(clientesList,1);
+                procuraCliente(clientesList, medicamentosList, indiferenciadosList, 1);
                 break;
             case 2:
-                procuraCliente(clientesList,2);
+                //procuraCliente(clientesList,2);
                 break;
             case 3:
                 Cliente.adicionarCliente(clientesList);
@@ -61,13 +67,15 @@ public class Atendimento extends Cliente implements Serializable{
  
 //****************************PROCURA/ADICIONAR CLIENTE **********************//   
     
-    public static void procuraCliente (List<Cliente> clientesList, int menu){
+    public static void procuraCliente (List<Cliente> clientesList, List<Medicamento> medicamentosList, List<Indiferenciado> indiferenciadosList, int menu) throws IOException{
       
         String nomeProcura;
         boolean found = false;
         
-        Listar listar = new Listar();
-        listar.listarClientes();
+        clientesList = Carregar.carregarClientes();
+        medicamentosList = Carregar.carregarMedicamentos();
+        
+        Listar.listarClientes();
         
         if (menu == 1){ 
                 
@@ -75,9 +83,14 @@ public class Atendimento extends Cliente implements Serializable{
             nomeProcura = readLine();
         
             for (Cliente cliente : clientesList ) {
-                println(cliente.getNome());
                 if (cliente.getNome().trim().equalsIgnoreCase(nomeProcura)) {
+                    println("Filho da puta");
                     found = true;
+                    String nome = nomeProcura;
+                    String nif = cliente.getNif();
+                    Venda.novaVenda(medicamentosList, nome, nif);
+                    
+                    return;
                 }
             }
             

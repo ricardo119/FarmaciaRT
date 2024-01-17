@@ -1,12 +1,13 @@
 package farmaciart;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import p1.P1App;
 
 public class FarmaciaRT extends P1App {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
         int escolha;
         
