@@ -79,7 +79,7 @@ public class Atendimento extends Cliente implements Serializable{
         
         if (menu == 1){ 
             String nomeProcura;    
-            println("Digita o nome do Cliente");
+            println("Digita o nome do Cliente:");
             nomeProcura = readLine();
         
             for (Cliente cliente : clientesList ) {
@@ -100,7 +100,7 @@ public class Atendimento extends Cliente implements Serializable{
         }
         if (menu == 2){ 
             String nifProcura;    
-            println("Digita o NIF do Cliente");
+            println("Digita o NIF do Cliente:");
             nifProcura = readLine();
         
             for (Cliente cliente : clientesList ) {
