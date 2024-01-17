@@ -7,6 +7,8 @@ import p1.P1App;
 
 public class FarmaciaRT extends P1App {
     
+    private static List<Venda> vendasList = new ArrayList<>();
+    
     public static void main(String[] args) throws IOException {
         
         int escolha;

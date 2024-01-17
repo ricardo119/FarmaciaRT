@@ -12,15 +12,13 @@ import static p1.P1App.readLine;
 
 public class Venda implements Serializable {
 
-
-    
-   private List<Venda> vendasList = new ArrayList<>();
+     private static List<Venda> vendasList = new ArrayList<>();
     private String nomeCliente;
     private String nifCliente;
     private int quantidade;
     private double total;
    
-    public Venda(String nomeCliente, String nif, int quantidade, double total){
+    public Venda(String nomeCliente, String nifCliente, int quantidade, double total){
         this.nomeCliente = nomeCliente;
         this.nifCliente = nifCliente;
         this.quantidade = quantidade;
@@ -61,7 +59,8 @@ public class Venda implements Serializable {
     
     public void guardarVendas() throws IOException {
         Guardar guardar = new Guardar();
-        //guardar.guardarVendas(vendasList);
+        vendasList.add(this);
+        guardar.guardarListaVendas(vendasList);
     }
     
     public void listarVendas(){
@@ -71,13 +70,15 @@ public class Venda implements Serializable {
     }
    
     public static void novaVenda(List<Medicamento> medicamentosList, String nomeCliente, String nifCliente) throws IOException{
-        
+        List<Venda> vendasList = new ArrayList<>();
         int op = 0;
         
         do{
             println("Menu Venda:");
             println("1. Venda de Medicamento");
             println("2. Venda de Indiferenciado");
+            
+            println("0. Voltar ao menu");
             
             op = readInt();
             
@@ -90,16 +91,18 @@ public class Venda implements Serializable {
         }while(op != 0);
     }
     
-    public static void vendaMedicamento(List<? extends Medicamento> medicamentosList, String nomeCliente, String nifCliente) throws IOException{
+    public static void vendaMedicamento(List<Medicamento> medicamentosList, String nomeCliente, String nifCliente) throws IOException{
         
         String nomeProcura;
         boolean encontrado = false;
         
+        
+        List<Venda> vendasList = new ArrayList<>();
         medicamentosList = Carregar.carregarMedicamentos();
 
         Listar.listarMedicamentos();
 
-        println("Digita o nome do medicamento a editar");
+        println("Digita o nome do medicamento");
         nomeProcura = readLine();
         
         for (Medicamento medicamento : medicamentosList) {
@@ -118,10 +121,11 @@ public class Venda implements Serializable {
                 }
                 
                 double total = quantidade * medicamento.getPreco();
+                println("Preço total:"+ total + "€");
                 
                 Venda novaVenda = new Venda(nomeCliente, nifCliente,quantidade,total);
                 novaVenda.vendasList.add(novaVenda);  // Add the sale to the customer's list
-                novaVenda.guardarVendas();  // Save the sale using the instance method
+                novaVenda.guardarVendas();
 
                  
                 medicamento.setStock(stock - quantidade);

@@ -15,14 +15,12 @@ public class Guardar extends Produto {
     
     
     //******************CRIAR FICHEIRO PARA INDIFERENCIADOS *************************//
-     public void guardarIndiferenciado(Indiferenciado indiferenciado) {
+    public void guardarIndiferenciado(Indiferenciado indiferenciado) {
         String nomeArquivo = "indiferenciados.txt";
 
         try {
-            // Load existing products from the file
             List<Indiferenciado> existingIndiferenciados = Carregar.carregarIndiferenciados();
 
-            // Check if the product already exists in the list
             boolean exists = false;
             for (int i = 0; i < existingIndiferenciados.size(); i++) {
                 Indiferenciado existingIndiferenciado = existingIndiferenciados.get(i);
@@ -33,15 +31,13 @@ public class Guardar extends Produto {
                 }
             }
 
-            // If the product does not exist, add a new one
             if (!exists) {
                 existingIndiferenciados.add(indiferenciado);
             }
 
-            // Save the updated list to the file
             guardarListaIndiferenciados(existingIndiferenciados);
         } catch (IOException e) {
-            println("Erro ao salvar indiferenciado: " + e.getMessage());
+            println("Erro ao guardar indiferenciado: " + e.getMessage());
         }
     }
 
@@ -64,10 +60,8 @@ public class Guardar extends Produto {
         String nomeArquivo = "medicamentos.txt";
 
         try {
-            // Load existing products from the file
             List<Medicamento> existingMedicamentos = Carregar.carregarMedicamentos();
 
-            // Check if the product already exists in the list
             boolean exists = false;
             for (Medicamento existingMedicamento : existingMedicamentos) {
                 if (existingMedicamento.getNome().equalsIgnoreCase(medicamento.getNome())) {
@@ -76,7 +70,6 @@ public class Guardar extends Produto {
                 }
             }
 
-            // If the product already exists, update it; otherwise, add a new one
             if (exists) {
                 for (int i = 0; i < existingMedicamentos.size(); i++) {
                     Medicamento existingMedicamento = existingMedicamentos.get(i);
@@ -86,14 +79,12 @@ public class Guardar extends Produto {
                     }
                 }
             } else {
-                // If the product does not exist, add a new one
                 existingMedicamentos.add(medicamento);
             }
 
-            // Save the updated list to the file
             guardarListaMedicamentos(existingMedicamentos);
         } catch (IOException e) {
-            println("Erro ao salvar medicamento: " + e.getMessage());
+            println("Erro ao guardar medicamento: " + e.getMessage());
         }
     }
 
@@ -117,10 +108,8 @@ public class Guardar extends Produto {
         String nomeArquivo = "clientes.dat";
 
         try {
-            // Load existing products from the file
             List<Cliente> existingClientes = Carregar.carregarClientes();
 
-            // Check if the product already exists in the list
             boolean exists = false;
             for (Cliente existingCliente : existingClientes) {
                 if (existingCliente.getNome().equalsIgnoreCase(cliente.getNome())) {
@@ -129,7 +118,6 @@ public class Guardar extends Produto {
                 }
             }
 
-            // If the product already exists, update it; otherwise, add a new one
             if (exists) {
                 for (int i = 0; i < existingClientes.size(); i++) {
                     Cliente existingCliente = existingClientes.get(i);
@@ -139,14 +127,12 @@ public class Guardar extends Produto {
                     }
                 }
             } else {
-                // If the product does not exist, add a new one
                 existingClientes.add(cliente);
             }
 
-            // Save the updated list to the file
             guardarListaClientes(existingClientes);
         } catch (IOException e) {
-            println("Erro ao salvar medicamento: " + e.getMessage());
+            println("Erro ao salvar cliente: " + e.getMessage());
         }
     }
     
@@ -159,6 +145,20 @@ public class Guardar extends Produto {
                         cliente.getRua() + ";" + cliente.getPostal() + ";" + cliente.getLocalidade() + ";" +
                         cliente.getVisibilidade();
                 bw.write(clienteInfo);
+                bw.newLine();
+            }
+        }
+    }
+    
+    
+    public void guardarListaVendas(List<Venda> vendasList) throws IOException {
+        String nomeArquivo = "vendas.dat";
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomeArquivo))) {
+            for (Venda venda : vendasList) {
+                String VendaInfo = venda.getNomeCliente() + ";" + venda.getNifCliente() + ";" +
+                        venda.getQuantidade() + ";" + venda.getTotal() + ";";
+                bw.write(VendaInfo);
                 bw.newLine();
             }
         }
