@@ -296,7 +296,7 @@ public class Cliente extends Morada implements Serializable {
         String nomeProcura;
         boolean encontrado = false;
         
-        Carregar.carregarClientes();
+         clientesList = Carregar.carregarClientes();
         
         Listar.listarClientes();
         
