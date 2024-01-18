@@ -16,7 +16,7 @@ public class FarmaciaRT extends P1App {
         int escolha;
         
         do {
-            println("*****************");
+            println("*******************");
             println("**Farmácia R&T!**");
             println("*****************\n");
          

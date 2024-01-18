@@ -76,7 +76,7 @@ public class Venda implements Serializable {
     public void listarVendas(){
         Listar listar = new Listar();
         List<Venda> vendasList = new ArrayList<>();
-        //star.listarVendas();
+        Listar.listarVendas();
     }
   
  //*****************MENU GESTÃO DE VENDAS ************************************//
