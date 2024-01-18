@@ -8,14 +8,20 @@ import p1.P1App;
 public class FarmaciaRT extends P1App {
     
     private static List<Venda> vendasList = new ArrayList<>();
+   
+    //*************************MENU PRINCIPAL*********************************//
     
     public static void main(String[] args) throws IOException {
         
         int escolha;
         
         do {
-            println("Farmácia R&T!");
-            println("Selecione uma opção:");
+            println("*****************");
+            println("**Farmácia R&T!**");
+            println("*****************\n");
+         
+            
+            println("Selecione uma opção:\n");
             println("1. Atendimento");
             println("9. Menu Administrador");
             println("0. Sair");
@@ -51,7 +57,9 @@ public class FarmaciaRT extends P1App {
         int admin;
     
         do {
-            println("\nMenu Administrador:");
+            println("\n***********************");
+            println("**Menu de Administrador**");
+            println("*************************\n");
             println("1. Adicionar Produto");
             println("2. Gestao de Clientes");
             println("3. Gestao Produtos");
@@ -68,7 +76,7 @@ public class FarmaciaRT extends P1App {
                 Cliente.menuGestaoCliente(clientesList);
                 break;
             case 3:
-                Listar.listarClientesVisiveis();
+                Produto.menuGestaoProduto(medicamentosList, indiferenciadosList);
                 break;
             case 4:
                 Venda.menuGestaoVenda(vendasList);

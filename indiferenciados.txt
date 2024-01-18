@@ -1,1 +1,5 @@
 Shampoo;Oleo;5;7.0;23.0;06/2031;true
+Chupeta;Puericultura;6;9.90;23.0;99/9999;true
+Fraldas Adulto;Geriatria;5;12.00:23.0;99/9999;true
+Fraldas Criança;Puericultura;15;5.50;23.0;99/9999;true
+Palmilhas de gel;Bem-estar;4;19.50;23.0;99/9999;true

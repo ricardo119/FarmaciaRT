@@ -60,7 +60,7 @@ public class Cliente extends Morada implements Serializable {
         listar.listarClientes();
     }
     
-    
+//**********************MENU GESTÃO DE CLIENTES*******************************//    
     
     public static void menuGestaoCliente(List<Cliente> clientesList) throws IOException{
         
@@ -68,7 +68,9 @@ public class Cliente extends Morada implements Serializable {
         
          do{
             
-            println("Menu de Gestão de Clientes:");
+            println("\n****************************");
+            println("**Menu de Gestão de Clientes**");
+            println("****************************\n");
             println("1. Adicionar Cliente");
             println("2. Remover Cliente da lista");
             println("3. Editar informação de Cliente");
@@ -160,6 +162,7 @@ public class Cliente extends Morada implements Serializable {
     novoCliente.guardarCliente(); 
     }
 
+//*** RECOLHER INFORMAÇÕES SOBRE NOVO CLIENTE PARA ADICIONAR Á LISTA DOS MESMOS***///
     
     public static void adicionarClienteVendaNome(List<Cliente> clientesList, String nomeCliente) throws IOException {
        
@@ -202,6 +205,8 @@ public class Cliente extends Morada implements Serializable {
     Cliente novoCliente = new Cliente(nome, nif , rua, postal, localidade, true);
     novoCliente.guardarCliente(); 
     }
+
+//*** RECOLHER INFORMAÇÕES SOBRE NOVO NIF PARA ADICIONAR Á LISTA DOS CLIENTES**///
     
     public static void adicionarClienteVendaNif(List<Cliente> clientesList, String nifCliente) throws IOException {
        
@@ -246,6 +251,7 @@ public class Cliente extends Morada implements Serializable {
     }
     
     
+ //*************************ElIMINAR CLIENTE****************************//   
     
     public static void eliminarCliente(List<Cliente> clientesList){
         
@@ -282,6 +288,8 @@ public class Cliente extends Morada implements Serializable {
         }
         
     }
+ 
+//*****************EDITAR CLIENTE EM TODAS AS VARIAVEIS *********************//
     
     public static void editarClienteGeral(List<Cliente> clientesList){
         
@@ -327,7 +335,7 @@ public class Cliente extends Morada implements Serializable {
         }
         
     }
-//********************** EDITAR CLIENTE**************************************//
+//********************** EDITAR CLIENTE ATRAVÉS DA ESCOLHA DA VARIAVEL**************************************//
     
     public static void editarCliente(List<Cliente> clientesList){
         

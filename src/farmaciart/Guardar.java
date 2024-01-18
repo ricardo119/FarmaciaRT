@@ -14,7 +14,8 @@ public class Guardar extends Produto {
     }
     
     
-    //******************CRIAR FICHEIRO PARA INDIFERENCIADOS *************************//
+    //******************GUARDAR/ATUALIZAR FICHEIRO PARA INDIFERENCIADOS ******************//
+   
     public void guardarIndiferenciado(Indiferenciado indiferenciado) {
         String nomeArquivo = "indiferenciados.txt";
 
@@ -26,7 +27,7 @@ public class Guardar extends Produto {
                 Indiferenciado existingIndiferenciado = existingIndiferenciados.get(i);
                 if (existingIndiferenciado.getNome().equalsIgnoreCase(indiferenciado.getNome())) {
                     exists = true;
-                    existingIndiferenciados.set(i, indiferenciado); // Update the existing product
+                    existingIndiferenciados.set(i, indiferenciado); 
                     break;
                 }
             }
@@ -55,7 +56,8 @@ public class Guardar extends Produto {
         }
     }
     
-    //******************CRIAR FICHEIRO PARA MEDICAMENTOS *************************//
+    //******************GUARDAR/ATUALIZAR FICHEIRO PARA MEDICAMENTOS *************************//
+    
     public void guardarMedicamento(Medicamento medicamento) {
         String nomeArquivo = "medicamentos.txt";
 
@@ -103,6 +105,7 @@ public class Guardar extends Produto {
             }
         }
     }
+//**************************ATUALIZAR/GUARDAR CLIENTE*************************//
     
     public void guardarCliente(Cliente cliente) {
         String nomeArquivo = "clientes.dat";
@@ -150,6 +153,7 @@ public class Guardar extends Produto {
         }
     }
     
+ //*****************GUARDAR INFORMAÇÃO DAS VENDAS*****************************//
     
     public void guardarListaVendas(List<Venda> vendasList) throws IOException {
     String nomeArquivo = "vendas.dat";

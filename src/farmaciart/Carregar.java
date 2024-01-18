@@ -9,6 +9,8 @@ import java.util.List;
 
 public class Carregar {
 
+//*****CARREGAR INFORMAÇÕES SOBRE MEDICAMENTOS APARTIR DE UM ARQUIVO TEXTO****//
+    
     public static List<Medicamento> carregarMedicamentos() {
         List<Medicamento> medicamentosList = new ArrayList<>();
 
@@ -27,7 +29,7 @@ public class Carregar {
                     double preco = Double.parseDouble(parts[3]);
                     double iva = Double.parseDouble(parts[4]);
 
-                    // Parse the date components
+                 
                     String[] dateComponents = parts[5].split("/");
                     int mes = Integer.parseInt(dateComponents[0]);
                     int ano = Integer.parseInt(dateComponents[1]);
@@ -47,7 +49,8 @@ public class Carregar {
 
         return medicamentosList;
     }
-
+//*****CARREGAR INFORMAÇÕES SOBRE INDIFERENCIADOS APARTIR DE UM ARQUIVO TEXTO****//
+    
     public static List<Indiferenciado> carregarIndiferenciados() {
         List<Indiferenciado> indiferenciadosList = new ArrayList<>();
 
@@ -66,7 +69,7 @@ public class Carregar {
                     double preco = Double.parseDouble(parts[3]);
                     double iva = Double.parseDouble(parts[4]);
 
-                    // Parse the date components
+                    
                     String[] dateComponents = parts[5].split("/");
                     int mes = Integer.parseInt(dateComponents[0]);
                     int ano = Integer.parseInt(dateComponents[1]);
@@ -86,6 +89,8 @@ public class Carregar {
 
         return indiferenciadosList;
     }
+ 
+//*****CARREGAR INFORMAÇÕES SOBRE CLIENTES APARTIR DE UM ARQUIVO TEXTO****//
     
     public static List<Cliente> carregarClientes(){
         List<Cliente> clientesList = new ArrayList<>();

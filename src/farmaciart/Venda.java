@@ -78,13 +78,17 @@ public class Venda implements Serializable {
         List<Venda> vendasList = new ArrayList<>();
         //star.listarVendas();
     }
+  
+ //*****************MENU GESTÃO DE VENDAS ************************************//
     
     public static void menuGestaoVenda(List<Venda> vendasList){
         
         int op = 0;
         
         do{
-            println("Menu Gestao de Vendas");
+            println("\n***********************");
+            println("**Menu Gestao de Vendas**");
+            println("*************************");
             println("1. Listar Vendas");
             println("2. Verificar historico de cliente (Coming Soon)");
             println("3. Verificar maior venda (Coming Soon)");
@@ -104,13 +108,15 @@ public class Venda implements Serializable {
             }
         }while(op != 0);
     }
-   
+  
     public static void novaVenda(List<Medicamento> medicamentosList, String nomeCliente, String nifCliente) throws IOException{
         List<Venda> vendasList = new ArrayList<>();
         int op = 0;
         
         do{
-            println("Menu Venda:");
+            println("\n**************");
+            println("**Menu Venda**");
+            println("**************\n");
             println("1. Venda de Medicamento");
             println("2. Venda de Indiferenciado");
             
@@ -126,6 +132,8 @@ public class Venda implements Serializable {
             
         }while(op != 0);
     }
+
+//******************VENDA DE UM MEDICAMENTO**********************************//
     
     public static void vendaMedicamento(List<Medicamento> medicamentosList,List<Venda> vendasList, String nomeCliente, String nifCliente) throws IOException{
         
@@ -159,7 +167,7 @@ public class Venda implements Serializable {
                 println("Preço total:"+ total + "€");
                 
                 Venda novaVenda = new Venda(nomeCliente, nifCliente, medicamentoVendido, quantidade, total);
-                vendasList.add(novaVenda);  // Add the sale to the customer's list
+                vendasList.add(novaVenda);  
                 
                 Guardar guardar = new Guardar();
                 guardar.guardarListaVendas(vendasList);

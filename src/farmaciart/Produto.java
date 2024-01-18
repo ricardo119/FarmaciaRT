@@ -81,18 +81,21 @@ public class Produto extends Data implements Serializable {
         this.validade = novaValidade;
     }
     
+///*//************* MENU DE GESTÃO DOS PRODUTOS*******************************//    
     
     public static void menuGestaoProduto(List<Medicamento> medicamentosList, List<Indiferenciado> indiferenciadosList) throws IOException{ 
         
         int op = 0;
         
         do{
-            println("Menu de Gestao de Produtos");
-            println("Editar Produtos");
-            println("Listar Medicamentos");
-            println("Listar Indiferenciados");
-            println("Listar todos os Medicamentos");
-            println("Listar todos os Indiferenciados");
+            println("*******************************");
+            println("**Menu de Gestao de Produtos**");
+            println("*******************************\n");
+            println("1.Editar Produtos");
+            println("2.Listar Medicamentos");
+            println("3.Listar Indiferenciados");
+            println("4.Listar todos os Medicamentos");
+            println("5.Listar todos os Indiferenciados");
             
             op = readInt();
             
@@ -121,7 +124,7 @@ public class Produto extends Data implements Serializable {
         }while(op != 0);
     }
     
- //******************ADICIONAR PRODUTO*************************************//
+ //*//*****************ADICIONAR PRODUTO*************************************//
     
     public static void novoProduto(List<Medicamento> medicamentosList, List<Indiferenciado> indiferenciadosList) {
         
@@ -129,23 +132,41 @@ public class Produto extends Data implements Serializable {
     int stock, op;
     double preco, iva;   
 
+    println("Digite SAIR para voltar ao menu Atendimento");
+    
     println("Digite o nome do produto:");
     nome = readLine();
-
+    if (nome.equalsIgnoreCase("sair")) {
+        return;
+    }
+    
     println("Digite a descrição do produto:");
     descricao = readLine();
-
-    println("Digite o stock do produto:");
+    if (descricao.equalsIgnoreCase("sair")) {
+        return;
+    }
+    println("Digite o stock do produto (0 para SAIR)");
     stock = readInt();
+    if (stock==0) {
+        return;
+    }
 
-    println("Digite o preço do produto:");
+    println("Digite o preço do produto (0 para SAIR)");
     preco = readDouble();
-
-    println("Digite o valor do IVA do produto:");
+    if (preco==0) {
+        return;
+    }
+    println("Digite o valor do IVA do produto (0 para SAIR)");
     iva = readDouble();
+    if (iva==0) {
+        return;
+    }
     
     println("Digita a validade do produto (mm/aaaa)");
     String expirationDateInput = readLine();
+    if (expirationDateInput.equalsIgnoreCase("sair")) {
+        return;
+    }
     
     String[] dateComponents = expirationDateInput.split("/");
     
@@ -179,6 +200,8 @@ public class Produto extends Data implements Serializable {
         }
 
     }
+ 
+//*************************EDITAR PRODUTO*************************************//
     
     public static void editarProduto(List<Medicamento> medicamentosList, List<Indiferenciado> indiferenciadosList) throws IOException{
         
@@ -207,6 +230,8 @@ public class Produto extends Data implements Serializable {
         }while (op != 0);
        
     }
+   
+ //********************* MENU EDITAR PRODUTO*************************************//
     
     public static void menuEditarMedicamento(List<Medicamento> medicamentosList) throws IOException{
         
@@ -243,6 +268,8 @@ public class Produto extends Data implements Serializable {
         }while (op != 0);
     }
     
+    //****************** MENU EDITAR INDIFERENCIADO *************************************//
+    
     public static void menuEditarIndiferenciado(List<Indiferenciado> indiferenciadosList) throws IOException{
         
         int op = 0;
@@ -277,6 +304,8 @@ public class Produto extends Data implements Serializable {
             }
         }while (op != 0);
     }
+    
+    //****************** ELIMINAR MEDICAMENTO *************************************//
     
     public static void eliminarMedicamento(List<Medicamento> medicamentosList){
         
@@ -313,6 +342,8 @@ public class Produto extends Data implements Serializable {
         
     }
     
+    //****************** ELIMINAR INDIFERENCIADOS*****************************//
+    
     public static void eliminarIndiferenciado(List<Indiferenciado> indiferenciadosList){
         
         String nomeProcura;
@@ -345,6 +376,8 @@ public class Produto extends Data implements Serializable {
             println("Produto não encontrado.");
             }  
         }
+   
+    //****************EDITAR INFORMAÇÕES GERAIS DE UM MEDICAMENTO*************//
     
     public static void editarMedicamentoGeral(List<Medicamento> medicamentosList){
         
@@ -401,6 +434,8 @@ public class Produto extends Data implements Serializable {
         }
         
     }
+   
+    //*************EDITAR INFORMAÇÕES GERAIS DE UM INDIFERENCIADO*************//
     
     public static void editarIndiferenciadoGeral(List<Indiferenciado> indiferenciadosList){
         
@@ -455,6 +490,7 @@ public class Produto extends Data implements Serializable {
         }
     }
     
+   //*************EDITAR INFORMAÇÕES ESPECIFICAS DE UM MEDICAMENTO*************//
     
     public static void editarMedicamento(List<Medicamento> medicamentosList) {
         
@@ -536,6 +572,8 @@ public class Produto extends Data implements Serializable {
         println("Medicamento não encontrado.");
         }
     }
+ 
+    //*************EDITAR INFORMAÇÕES ESPECIFICAS DE UM INDIFERENCIADO*************//
     
     public static void editarIndiferenciado(List<Indiferenciado> indiferenciadosList) {
         

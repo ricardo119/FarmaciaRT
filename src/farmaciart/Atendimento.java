@@ -27,7 +27,7 @@ public class Atendimento extends Cliente implements Serializable{
 }
 
     
-      //********************* MENU ATENDIMENTO   ********************************//
+    //********************* MENU ATENDIMENTO   *******************************//
     
     public static void menuAtendimento() throws IOException{
      
@@ -36,7 +36,9 @@ public class Atendimento extends Cliente implements Serializable{
         
         do {
         
-        println("\nMenu de Atendimento:");
+        println("\n***********************");
+        println("**Menu de Atendimento**");
+        println("************************\n");
         println("1.Procurar cliente:");
         println("2.NIF do cliente:");
         println("3.Criar ficha de cliente:");
@@ -49,7 +51,7 @@ public class Atendimento extends Cliente implements Serializable{
                 procuraCliente(clientesList, medicamentosList, indiferenciadosList, 1);
                 break;
             case 2:
-                //procuraCliente(clientesList,2);
+              procuraCliente(clientesList, medicamentosList, indiferenciadosList, 2);
                 break;
             case 3:
                 Cliente.adicionarCliente(clientesList);
@@ -79,8 +81,14 @@ public class Atendimento extends Cliente implements Serializable{
         
         if (menu == 1){ 
             String nomeProcura;    
-            println("Digita o nome do Cliente:");
+            
+            println("\nDigite SAIR para voltar ao menu Atendimento");
+            println("\nDigita o nome do Cliente:");
             nomeProcura = readLine();
+            if (nomeProcura.equalsIgnoreCase("sair")) {
+            Atendimento.menuAtendimento();
+            return;
+        }
         
             for (Cliente cliente : clientesList ) {
                 if (cliente.getNome().trim().equalsIgnoreCase(nomeProcura)) {

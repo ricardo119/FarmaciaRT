@@ -11,6 +11,7 @@ public class Listar extends Produto {
         
     }
     
+ //************LISTAR  INDIFERENCIADOS VISIVEIS*******************************//
     
     public static void listarIndiferenciadosVisiveis() {
     String nomeArquivo = "indiferenciados.txt";
@@ -19,19 +20,19 @@ public class Listar extends Produto {
         BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
         String linha;
 
-        println("\nLista de Produtos:");
+        println("\nLista de Produtos\n");
 
         while ((linha = leitor.readLine()) != null) {
             String[] parts = linha.split(";");
 
-            if (parts.length >= 7) {  // Assuming a minimum number of parts
+            if (parts.length >= 7) {  
                 String nome = parts[0];
                 String descricao = parts[1];
                 int stock = Integer.parseInt(parts[2]);
                 double preco = Double.parseDouble(parts[3]);
                 double iva = Double.parseDouble(parts[4]);
 
-                // Parse the date components
+                
                 String[] dateComponents = parts[5].split("/");
                 int mes = Integer.parseInt(dateComponents[0]);
                 int ano = Integer.parseInt(dateComponents[1]);
@@ -39,7 +40,7 @@ public class Listar extends Produto {
 
                 boolean isVisivel = Boolean.parseBoolean(parts[6]);
 
-                // Check if isVisivel is true before listing
+                
                 if (isVisivel) {
                     StringBuilder output = new StringBuilder();
                     output.append("Nome: ").append(nome);
@@ -62,6 +63,7 @@ public class Listar extends Produto {
         }
     }
     
+ //************LISTAR PRODUTOS MEDICAMENTOS VISIVEIS**************************// 
     
    public static void listarMedicamentosVisiveis() {
     String nomeArquivo = "medicamentos.txt";
@@ -70,19 +72,19 @@ public class Listar extends Produto {
         BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
         String linha;
 
-        println("\nLista de Medicamentos:");
+        println("\nLista de Medicamentos:\n");
 
         while ((linha = leitor.readLine()) != null) {
             String[] parts = linha.split(";");
 
-            if (parts.length >= 7) {  // Assuming a minimum number of parts
+            if (parts.length >= 7) {  
                 String nome = parts[0];
                 String descricao = parts[1];
                 int stock = Integer.parseInt(parts[2]);
                 double preco = Double.parseDouble(parts[3]);
                 double iva = Double.parseDouble(parts[4]);
 
-                // Parse the date components
+                
                 String[] dateComponents = parts[5].split("/");
                 int mes = Integer.parseInt(dateComponents[0]);
                 int ano = Integer.parseInt(dateComponents[1]);
@@ -90,7 +92,7 @@ public class Listar extends Produto {
 
                 boolean isVisivel = Boolean.parseBoolean(parts[6]);
 
-                // Check if isVisivel is true before listing
+                
                 if (isVisivel) {
                     StringBuilder output = new StringBuilder();
                     output.append("Nome: ").append(nome);
@@ -112,15 +114,16 @@ public class Listar extends Produto {
         println("Erro ao listar medicamentos: " + e.getMessage());
         }
     }
+ //****************************LISTAR CLIENTES VISIVEIS***********************//
    
-    public static void listarClientesVisiveis(){
+   public static void listarClientesVisiveis(){
         String nomeArquivo = "clientes.dat";
 
     try {
         BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
         String linha;
 
-        println("\nLista de Clientes:");
+        println("\nLista de Clientes:\n");
 
         while ((linha = leitor.readLine()) != null) {
             String[] parts = linha.split(";");
@@ -134,7 +137,7 @@ public class Listar extends Produto {
 
                 boolean isVisivel = Boolean.parseBoolean(parts[5]);
 
-                // Check if isVisivel is true before listing
+        
                 if (isVisivel) {
                     StringBuilder output = new StringBuilder();
                     output.append("Nome: ").append(nome);
@@ -155,7 +158,8 @@ public class Listar extends Produto {
         println("Erro ao listar clientes: " + e.getMessage());
         }
     }
-
+//************LISTAR PRODUTOS INDIFERENCIADOS *******************************//
+   
     public static void listarIndiferenciados() {
     String nomeArquivo = "indiferenciados.txt";
 
@@ -163,19 +167,19 @@ public class Listar extends Produto {
         BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
         String linha;
 
-        println("\nLista de Produtos:");
+        println("\nLista de Produtos:\n");
 
         while ((linha = leitor.readLine()) != null) {
             String[] parts = linha.split(";");
 
-            if (parts.length >= 7) {  // Assuming a minimum number of parts
+            if (parts.length >= 7) { 
                 String nome = parts[0];
                 String descricao = parts[1];
                 int stock = Integer.parseInt(parts[2]);
                 double preco = Double.parseDouble(parts[3]);
                 double iva = Double.parseDouble(parts[4]);
 
-                // Parse the date components
+                
                 String[] dateComponents = parts[5].split("/");
                 int mes = Integer.parseInt(dateComponents[0]);
                 int ano = Integer.parseInt(dateComponents[1]);
@@ -213,19 +217,19 @@ public class Listar extends Produto {
         BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
         String linha;
 
-        println("\nLista de Medicamentos:");
+        println("\nLista de Medicamentos:\n");
 
         while ((linha = leitor.readLine()) != null) {
             String[] parts = linha.split(";");
 
-            if (parts.length >= 7) {  // Assuming a minimum number of parts
+            if (parts.length >= 7) {  
                 String nome = parts[0];
                 String descricao = parts[1];
                 int stock = Integer.parseInt(parts[2]);
                 double preco = Double.parseDouble(parts[3]);
                 double iva = Double.parseDouble(parts[4]);
 
-                // Parse the date components
+                
                 String[] dateComponents = parts[5].split("/");
                 int mes = Integer.parseInt(dateComponents[0]);
                 int ano = Integer.parseInt(dateComponents[1]);
@@ -255,6 +259,7 @@ public class Listar extends Produto {
         }
     }
    //****************LISTAR CLIENTE**********************************************//
+    
     public static void listarClientes() {
         String nomeArquivo = "clientes.dat";
 
@@ -273,6 +278,7 @@ public class Listar extends Produto {
             println("Erro ao listar clientes: " + e.getMessage());
         }
     }
+ //*******************************LISTAR VENDAS ******************************//   
     
     public static void listarVendas() {
         String nomeArquivo = "vendas.dat";
