@@ -275,7 +275,9 @@ public class Produto extends Data implements Serializable {
         int op = 0;
         
         do{        
-            println("Menu de Edicao de Medicamento");
+            println("\n*********************************");
+            println("**Menu de Edicao de Medicamento**");
+            println("*********************************\n");
             println("1. Remover da lista");
             println("2. Editar todas as informacoes");
             println("3. Editar informacao especefica");
@@ -387,7 +389,7 @@ public class Produto extends Data implements Serializable {
         Listar listar = new Listar();
         listar.listarMedicamentos();
         
-        println("Digita o nome do medicamento a editar");
+        println("\nDigita o nome do medicamento a editar\n");
         nomeProcura = readLine();
         
         for (Medicamento medicamento : medicamentosList) {
@@ -445,7 +447,7 @@ public class Produto extends Data implements Serializable {
         Listar listar = new Listar();
         listar.listarIndiferenciados();
         
-        println("Digita o nome do produto a editar");
+        println("\nDigita o nome do produto a editar");
         nomeProcura = readLine();
         
         for (Indiferenciado indiferenciado : indiferenciadosList) {
@@ -510,7 +512,7 @@ public class Produto extends Data implements Serializable {
                 int opcao;
 
                 do {
-                    println("Escolha a informação a editar para o medicamento '" + nomeProcura + "':");
+                    println("\nEscolha a informação a editar para o medicamento\n" + nomeProcura + "':");
                     println("1. Descrição");
                     println("2. Stock");
                     println("3. Preço");
@@ -593,7 +595,7 @@ public class Produto extends Data implements Serializable {
                 int opcao;
 
                 do {
-                    println("Escolha a informação a editar para o produto '" + nomeProcura + "':");
+                    println("\nEscolha a informação a editar para o produto\n'" + nomeProcura + "':");
                     println("1. Descrição");
                     println("2. Estoque");
                     println("3. Preço");
